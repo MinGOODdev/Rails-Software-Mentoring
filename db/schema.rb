@@ -10,23 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180706111559) do
+ActiveRecord::Schema.define(version: 20180706115642) do
 
   create_table "departments", force: :cascade do |t|
-    t.string   "departmentName"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string   "department_name"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "mentor_applies", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "team_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "semesters", force: :cascade do |t|
+    t.string   "semester_name"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",  null: false
     t.string   "encrypted_password",     default: "",  null: false
-    t.string   "studentNumber",                        null: false
-    t.string   "studentName",                          null: false
-    t.string   "bankName",                             null: false
-    t.string   "bankAccount",                          null: false
+    t.string   "student_number",                       null: false
+    t.string   "student_name",                         null: false
+    t.string   "bank_name",                            null: false
+    t.string   "bank_account",                         null: false
     t.string   "grade",                                null: false
-    t.integer  "departmentId",           default: 1,   null: false
+    t.integer  "department_id",          default: 1,   null: false
     t.string   "authorization",          default: "2", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"

@@ -8,12 +8,12 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.0]
       t.string :encrypted_password, null: false, default: ""
       
       ## 새롭게 추가한 항목들
-      t.string :studentNumber, null: false
-      t.string :studentName, null: false
-      t.string :bankName, null: false
-      t.string :bankAccount, null: false
+      t.string :student_number, null: false
+      t.string :student_name, null: false
+      t.string :bank_name, null: false
+      t.string :bank_account, null: false
       t.string :grade, null: false
-      t.integer :departmentId, null: false, default: 1
+      t.integer :department_id, null: false, default: 1
       t.string :authorization, null: false, default: 2
 
       ## Recoverable

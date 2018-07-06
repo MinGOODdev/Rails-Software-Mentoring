@@ -9,13 +9,13 @@
     <%= f.input :password_confirmation, required: true %>
     
     <!-- 새로 추가한 항목들 -->
-    <%= f.input :studentNumber, required: true %>
-    <%= f.input :studentName, required: true %>
-    <%= f.input :bankName, required: true %>
-    <%= f.input :bankAccount, required: true %>
+    <%= f.input :student_number, required: true %>
+    <%= f.input :student_name, required: true %>
+    <%= f.input :bank_name, required: true %>
+    <%= f.input :bank_account, required: true %>
     <%= f.input :grade, required: true %>
-    * <%= f.label :departmentId %> 
-    <%= f.collection_select(:departmentId, Department.all, :id, :departmentName, :prompt => true) %>
+    * <%= f.label :department_id %> 
+    <%= f.collection_select(:department_id, Department.all, :id, :departmentName, :prompt => true) %>
   </div>
 
   <div class="form-actions">
