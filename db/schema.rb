@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180706115642) do
+ActiveRecord::Schema.define(version: 20180706132144) do
 
   create_table "departments", force: :cascade do |t|
     t.string   "department_name"
@@ -20,9 +20,36 @@ ActiveRecord::Schema.define(version: 20180706115642) do
 
   create_table "mentor_applies", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "team_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "team_name",                null: false
+    t.string   "subject",                  null: false
+    t.string   "purpose",                  null: false
+    t.string   "content",                  null: false
+    t.string   "method",                   null: false
+    t.integer  "semester_id"
+    t.string   "portfolio",   default: "", null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+  end
+
+  create_table "mentor_rooms", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "team_name",                       null: false
+    t.string   "subject",                         null: false
+    t.string   "purpose",                         null: false
+    t.string   "content",                         null: false
+    t.string   "method",                          null: false
+    t.integer  "semester_id"
+    t.boolean  "mid_report_ok",   default: false
+    t.boolean  "final_report_ok", default: false
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
+
+  create_table "room_members", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "mentor_room_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "semesters", force: :cascade do |t|
