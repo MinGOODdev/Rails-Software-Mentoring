@@ -33,7 +33,22 @@ class AdminController < ApplicationController
         mentorRoom.method = mentorApply.method
         mentorRoom.semester_id = mentorApply.semester_id
         mentorRoom.save
+        
+        ## RoomMember Table에도 저장
+        roomMember = RoomMember.new
+        roomMember.user_id = mentorApply.user_id
+        roomMember.mentor_room_id = mentorRoom.id
+        roomMember.save
       end
+    end
+  end
+  
+  # 유저 권한 변경
+  def userAuthChange
+    user = User.all
+    user.each do |u|
+      u.authorization = params[(u.id).to_s]
+      u.save
     end
   end
   

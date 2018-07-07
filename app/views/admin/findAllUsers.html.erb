@@ -12,25 +12,37 @@
     </tr>
   </thead>
   <tbody>
-    <% @users.each do |u| %>
-      <tr>
-        <td><%= u.email %></td>
-        <td><%= u.student_name %></td>
-        <td><%= u.department.department_name %></td>
-        <td><%= u.grade %></td>
-        <td><%= u.phone_number %></td>
-        <td><%= u.mail %></td>
-        <td><%= u.bank_name %>/<%= u.bank_account %></td>
-        <td>
-          <% if u.user.authorization == '0' %>
-            관리자
-          <% elsif u.user.authorization == '1' %>
-            멘토
-          <% else %>
-            멘티
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
+    <form action="/admin/userAuthChange" method="post">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <% @users.each do |u| %>
+        <tr>
+          <td><%= u.email %></td>
+          <td><%= u.student_name %></td>
+          <td><%= u.department.department_name %></td>
+          <td><%= u.grade %></td>
+          <td><%= u.phone_number %></td>
+          <td><%= u.mail %></td>
+          <td><%= u.bank_name %>/<%= u.bank_account %></td>
+          <td>
+            <% if u.authorization == '0' %>
+            <!--radio_button_tag 'color', "green", true, class: "color_input"-->
+            <!--radio_button_tag(name, value, checked = false, options = {})-->
+              <%= radio_button_tag u.id, '2', false %> 멘티
+              <%= radio_button_tag u.id, '1', false %> 멘토
+              <%= radio_button_tag u.id, '0', true %> 관리자
+            <% elsif u.authorization == '1' %>
+              <%= radio_button_tag u.id, '2', false %> 멘티
+              <%= radio_button_tag u.id, '1', true %> 멘토
+              <%= radio_button_tag u.id, '0', false %> 관리자
+            <% else %>
+              <%= radio_button_tag u.id, '2', true %> 멘티
+              <%= radio_button_tag u.id, '1', false %> 멘토
+              <%= radio_button_tag u.id, '0', false %> 관리자
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+      <button type="submit">저장</button>
+    </form>
   </tbody>
 </table>
