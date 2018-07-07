@@ -6,7 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(email: 'mingooddev@1',
+User.create(email: '201132034',
             password: '111111',
             student_number: '201132034',
             student_name: '조민국',
@@ -15,6 +15,26 @@ User.create(email: 'mingooddev@1',
             grade: '4',
             department_id: 11,
             authorization: 0)
+            
+User.create(email: '201132000',
+            password: '111111',
+            student_number: '201132000',
+            student_name: '조민',
+            bank_name: '국민',
+            bank_account: '45700101290300',
+            grade: '4',
+            department_id: 11,
+            authorization: 2)
+            
+User.create(email: '201132001',
+            password: '111111',
+            student_number: '201132001',
+            student_name: '조',
+            bank_name: '국민',
+            bank_account: '45700101290300',
+            grade: '4',
+            department_id: 11,
+            authorization: 2)
 
 Department.create(id: 10, department_name: 'IT학부')
 Department.create(id: 11, department_name: '소프트웨어공학과')
@@ -27,3 +47,6 @@ Semester.create(semester_name: '2019년 1학기')
 Semester.create(semester_name: '2019년 2학기')
 Semester.create(semester_name: '2020년 1학기')
 Semester.create(semester_name: '2020년 2학기')
+
+MentorApply.create(user_id: 2, team_name: 'a', subject: 'a', purpose: 'a', content: 'a', method: 'a', semester_id: 1)
+MentorApply.create(user_id: 3, team_name: 'a', subject: 'a', purpose: 'a', content: 'a', method: 'a', semester_id: 1)

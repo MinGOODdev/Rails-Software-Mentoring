@@ -1,0 +1,34 @@
+<table>
+  <thead>
+    <tr>
+      <td>id</td>
+      <td>학번</td>
+      <td>이름</td>
+      <td>소속</td>
+      <td>학년</td>
+      <td>은행/계좌</td>
+      <td>권한</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |u| %>
+      <tr>
+        <td><%= u.id %></td>
+        <td><%= u.student_number %></td>
+        <td><%= u.student_name %></td>
+        <td><%= u.department.department_name %></td>
+        <td><%= u.grade %></td>
+        <td><%= u.bank_name %>/<%= u.bank_account %></td>
+        <td>
+          <% if u.user.authorization == '0' %>
+            관리자
+          <% elsif u.user.authorization == '1' %>
+            멘토
+          <% else %>
+            멘티
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

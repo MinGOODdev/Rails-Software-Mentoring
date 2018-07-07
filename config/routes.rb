@@ -1,8 +1,24 @@
 Rails.application.routes.draw do
+  get 'admin/index'
+
   devise_for :users
   
   root 'home#index'
   get 'home/index'
+  
+  ## 멘토 신청
+  get 'mentors/applyGet'
+  post 'mentors/applyPost'
+  
+  
+  # 관리자가 사용하는 routes
+  ## 모든 유저 목록
+  get 'admin/findAllUsers'
+  ## 멘토 신청한 유저 목록
+  get 'admin/mentorApplyUsers'
+  ## 멘토 신청자 승인 (신청자 권한 멘토로 변경)
+  post 'admin/mentorApplyConfirm'
+  
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
