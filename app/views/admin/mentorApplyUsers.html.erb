@@ -13,30 +13,32 @@
     </tr>
   </thead>
   <tbody>
-    <% @users.each do |u| %>
     <form action="/admin/mentorApplyConfirm" method="post">
       <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-      <tr>
-        <td><%= check_box_tag "users[]", u.user.id %></td>
-        <td><%= u.user.email %></td>
-        <td><%= u.user.student_name %></td>
-        <td><%= u.user.department.department_name %></td>
-        <td><%= u.user.grade %></td>
-        <td><%= u.user.phone_number %></td>
-        <td><%= u.user.mail %></td>
-        <td><%= u.user.bank_name %>/<%= u.user.bank_account %></td>
-        <td>
-          <% if u.user.authorization == '0' %>
-            관리자
-          <% elsif u.user.authorization == '1' %>
-            멘토
-          <% else %>
-            멘티
-          <% end %>
-        </td>
-      </tr>
-    <% end %>
-    <button type="submit">승인</button>
+      <% @users.each do |u| %>
+        <% if u.user.authorization == '2' %>
+        <tr>
+          <td><%= check_box_tag "users[]", u.user.id %></td>
+          <td><%= u.user.email %></td>
+          <td><%= u.user.student_name %></td>
+          <td><%= u.user.department.department_name %></td>
+          <td><%= u.user.grade %></td>
+          <td><%= u.user.phone_number %></td>
+          <td><%= u.user.mail %></td>
+          <td><%= u.user.bank_name %>/<%= u.user.bank_account %></td>
+          <td>
+            <% if u.user.authorization == '0' %>
+              관리자
+            <% elsif u.user.authorization == '1' %>
+              멘토
+            <% else %>
+              멘티
+            <% end %>
+          </td>
+        </tr>
+        <% end %>
+      <% end %>
+      <button type="submit">승인</button>
     </form>
   </tbody>
 </table>
