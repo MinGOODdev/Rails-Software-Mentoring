@@ -8,31 +8,34 @@
 
 User.create(email: '201132034',
             password: '111111',
-            student_number: '201132034',
             student_name: '조민국',
             bank_name: '국민',
             bank_account: '45700101290300',
             grade: '4',
+            phone_number: '010-0000-0000',
+            mail: '1@1',
             department_id: 11,
             authorization: 0)
             
 User.create(email: '201132000',
             password: '111111',
-            student_number: '201132000',
             student_name: '조민',
             bank_name: '국민',
             bank_account: '45700101290300',
             grade: '4',
+            phone_number: '010-0000-0000',
+            mail: '1@1',
             department_id: 11,
             authorization: 2)
             
 User.create(email: '201132001',
             password: '111111',
-            student_number: '201132001',
             student_name: '조',
             bank_name: '국민',
             bank_account: '45700101290300',
             grade: '4',
+            phone_number: '010-0000-0000',
+            mail: '1@1',
             department_id: 11,
             authorization: 2)
 

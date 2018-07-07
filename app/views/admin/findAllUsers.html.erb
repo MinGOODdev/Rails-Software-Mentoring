@@ -1,11 +1,12 @@
 <table>
   <thead>
     <tr>
-      <td>id</td>
       <td>학번</td>
       <td>이름</td>
       <td>소속</td>
       <td>학년</td>
+      <td>전화번호</td>
+      <td>이메일</td>
       <td>은행/계좌</td>
       <td>권한</td>
     </tr>
@@ -13,11 +14,12 @@
   <tbody>
     <% @users.each do |u| %>
       <tr>
-        <td><%= u.id %></td>
-        <td><%= u.student_number %></td>
+        <td><%= u.email %></td>
         <td><%= u.student_name %></td>
         <td><%= u.department.department_name %></td>
         <td><%= u.grade %></td>
+        <td><%= u.phone_number %></td>
+        <td><%= u.mail %></td>
         <td><%= u.bank_name %>/<%= u.bank_account %></td>
         <td>
           <% if u.user.authorization == '0' %>

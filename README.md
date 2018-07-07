@@ -1,15 +1,14 @@
 # Software Mentoring System
-## Rails version
 
 ## Function
 ### Common
-* Sign_in
-* Sign_out
+* Sign_in (complete)
+* Sign_out (complete)
 * Free Board CRUD (Pagination)
 * Question Board CRUD (Pagination)
 
 ### Ordinary User (as Student == Mentee (authorization == '2')
-* MentorApply
+* MentorApply (complete)
 * MenteeApply
 
 ### Mentor (authorization == '1')
