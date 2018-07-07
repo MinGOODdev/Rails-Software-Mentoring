@@ -1,0 +1,57 @@
+<!-- 해당 멘토방 세부 정보 -->
+<p><%= @selectedRoom.semester.semester_name %></p>
+<p><%= @selectedRoom.user.student_name %></p>
+<p><%= @selectedRoom.user.department.department_name %></p>
+<p><%= @selectedRoom.user.grade %></p>
+<p><%= @selectedRoom.team_name %></p>
+<p><%= @selectedRoom.subject %></p>
+<p><%= @selectedRoom.purpose %></p>
+<p><%= @selectedRoom.content %></p>
+<p><%= @selectedRoom.method %></p>
+
+<hr/>
+
+<!-- 멘토방 구성 인원을 출력합니다. -->
+<p>멘토방 구성 인원</p>
+<table>
+  <thead>
+    <tr>
+      <td>이름</td>
+      <td>권한</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @roomMembers.each do |r| %>
+    <tr>
+      <td><%= r.user.student_name %></td>
+      <td><%= r.user.authorization %></td>
+      <!-- 해당 멘토방의 멘토인 경우에만 멘티를 삭제할 수 있습니다. -->
+      <% if current_user.id == @selectedRoom.user_id && r.user.authorization == '2' %>
+      <form action="/mentors/deleteMyMentee/<%= r.user.id %>" method="post">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <button type="submit">삭제</button>
+      </form>
+      <% end %>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<% if @roomAll.where(:user_id => current_user.id).empty? %>
+  <!-- 신청한 멘토방이 1개라도 있으면 중복 신청 불가능 -->
+  <form action="/students/applyMentee/<%= @selectedRoom.id %>" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <button type="submit">신청</button>
+  </form>
+<% else %>
+  <!--
+  멘토방에 신청한 내역이 있다면 1개 밖에 없고,
+  신청 버튼이 없다면 이 멘토방에 신청한 것이기 때문에
+  취소 버튼 활성화
+  -->
+  <form action="/students/deleteApplyMentee/<%= current_user.id %>" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <button type="submit">신청 취소</button>
+  </form>
+<% end %>
