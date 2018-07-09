@@ -4,19 +4,18 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true %>
-    <%= f.input :password, required: true, hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
-    <%= f.input :password_confirmation, required: true %>
+    <%= f.input :email, required: true, autofocus: true, label: false, placeholder: '학번을 입력하세요.' %>
+    <%= f.input :password, required: true, label: false, placeholder: 'PW를 입력하세요.', hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
+    <%= f.input :password_confirmation, required: true, label: false, placeholder: '다시 한번 PW를 입력하세요.' %>
     
     <!-- 새로 추가한 항목들 -->
-    <%= f.input :student_name, required: true %>
-    <%= f.input :bank_name, required: true %>
-    <%= f.input :bank_account, required: true %>
-    <%= f.input :grade, required: true %>
-    <%= f.input :phone_number, required: true %>
-    <%= f.input :mail, required: true %>
-    * <%= f.label :department_id %> 
+    <%= f.input :student_name, required: true, label: false, placeholder: '이름을 입력하세요.' %>
+    <%= f.input :grade, required: true, label: false, placeholder: '학년을 입력하세요.' %>
+    <%= f.input :phone_number, required: true, label: false, placeholder: '핸드폰 번호를 입력하세요.' %>
+    <%= f.input :mail, required: true, label: false, placeholder: 'email을 입력하세요.' %>
     <%= f.collection_select(:department_id, Department.all, :id, :department_name, :prompt => true) %>
+    <%= f.input :bank_name, required: true, label: false, placeholder: '거래 은행을 입력하세요.' %>
+    <%= f.input :bank_account, required: true, label: false, placeholder: '은행 계좌를 입력하세요.' %>
   </div>
 
   <div class="form-actions">

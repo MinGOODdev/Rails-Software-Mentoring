@@ -11,7 +11,9 @@
               <label for="semester_id">학기</label>
               <select id="semester_id" name="semester_id">
                 <% @semesters.each do |sem| %>
-                  <option value='<%= sem.id %>'><%= sem.semester_name %></option>
+                  <% if sem.semester_able %>
+                    <option value='<%= sem.id %>'><%= sem.semester_name %></option>
+                  <% end %>
                 <% end %>
               </select>
             </div>

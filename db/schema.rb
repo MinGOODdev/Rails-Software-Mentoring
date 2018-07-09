@@ -55,20 +55,21 @@ ActiveRecord::Schema.define(version: 20180706132144) do
 
   create_table "semesters", force: :cascade do |t|
     t.string   "semester_name"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.boolean  "semester_able", default: true, null: false
+    t.datetime "created_at",                   null: false
+    t.datetime "updated_at",                   null: false
   end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",  null: false
     t.string   "encrypted_password",     default: "",  null: false
     t.string   "student_name",                         null: false
-    t.string   "bank_name",                            null: false
-    t.string   "bank_account",                         null: false
     t.string   "grade",                                null: false
     t.string   "phone_number",                         null: false
     t.string   "mail",                                 null: false
     t.integer  "department_id",          default: 1,   null: false
+    t.string   "bank_name",                            null: false
+    t.string   "bank_account",                         null: false
     t.string   "authorization",          default: "2", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
