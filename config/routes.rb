@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   post 'students/deleteApplyMentee/:user_id' => 'students#deleteApplyMentee'
   
   ## 멘토 신청
-  get 'mentors/applyGet'
-  post 'mentors/applyPost'
+  get 'students/applyMentorGet'
+  post 'students/applyMentorPost'
   
   
   # 멘토가 사용하는 routes

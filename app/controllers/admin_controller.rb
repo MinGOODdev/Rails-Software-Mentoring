@@ -32,6 +32,7 @@ class AdminController < ApplicationController
         mentorRoom.content = mentorApply.content
         mentorRoom.method = mentorApply.method
         mentorRoom.semester_id = mentorApply.semester_id
+        mentorRoom.attachment = mentorApply.attachment
         mentorRoom.save
         
         ## RoomMember Table에도 저장

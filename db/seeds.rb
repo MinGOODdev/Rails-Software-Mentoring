@@ -15,7 +15,7 @@ User.create(email: '201132034',
             phone_number: '010-0000-0000',
             mail: '1@1',
             department_id: 11,
-            authorization: 0)
+            authorization: 2)
             
 User.create(email: '201132000',
             password: '111111',
@@ -50,6 +50,3 @@ Semester.create(semester_name: '2019년 1학기')
 Semester.create(semester_name: '2019년 2학기')
 Semester.create(semester_name: '2020년 1학기')
 Semester.create(semester_name: '2020년 2학기')
-
-MentorApply.create(user_id: 2, team_name: 'a', subject: 'a', purpose: 'a', content: 'a', method: 'a', semester_id: 1)
-MentorApply.create(user_id: 3, team_name: 'a', subject: 'a', purpose: 'a', content: 'a', method: 'a', semester_id: 1)

@@ -9,7 +9,7 @@ class CreateMentorApplies < ActiveRecord::Migration[5.0]
       t.string :content, null: false
       t.string :method, null: false
       t.integer :semester_id
-      t.string :portfolio, null: false, default: ""
+      t.string :attachment, null: false, default: ""
 
       t.timestamps null: false
     end

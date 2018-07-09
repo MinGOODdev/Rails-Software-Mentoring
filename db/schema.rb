@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20180706132144) do
     t.string   "content",                  null: false
     t.string   "method",                   null: false
     t.integer  "semester_id"
-    t.string   "portfolio",   default: "", null: false
+    t.string   "attachment",  default: "", null: false
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 20180706132144) do
     t.string   "content",                         null: false
     t.string   "method",                          null: false
     t.integer  "semester_id"
+    t.string   "attachment",      default: "",    null: false
     t.boolean  "mid_report_ok",   default: false
     t.boolean  "final_report_ok", default: false
     t.datetime "created_at",                      null: false
