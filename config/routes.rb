@@ -4,6 +4,15 @@ Rails.application.routes.draw do
   root 'home#index'
   get 'home/index'
   
+  # 공지사항
+  get 'notices/index'
+  get 'notices/new'
+  post 'notices/create'
+  get 'notices/edit/:notice_id' => 'notices#edit'
+  post 'notices/update/:notice_id' => 'notices#update'
+  get 'notices/show/:notice_id' => 'notices#show'
+  post 'notices/delete/:notice_id' => 'notices#delete'
+  
   ## 멘토방 목록 조회
   get 'students/findAllRooms'
   

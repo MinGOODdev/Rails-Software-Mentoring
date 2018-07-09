@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180706132144) do
+ActiveRecord::Schema.define(version: 20180709092354) do
 
   create_table "departments", force: :cascade do |t|
     t.string   "department_name"
@@ -44,6 +44,25 @@ ActiveRecord::Schema.define(version: 20180706132144) do
     t.boolean  "final_report_ok", default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+  end
+
+  create_table "notices", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "content"
+    t.string   "attachment", default: "", null: false
+    t.integer  "hit",        default: 0,  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.integer  "user_id"
+    t.string   "title"
+    t.string   "content"
+    t.integer  "hit",        default: 0, null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   create_table "room_members", force: :cascade do |t|

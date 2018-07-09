@@ -1,0 +1,15 @@
+<form action="/notices/update/<%= @notice.id %>" method="post">
+	<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+	<div>
+		<label for="title">제목</label>
+		<input id="title" name="title" value="<%= @notice.title %>">
+	</div>
+	<div>
+		<label for="content">내용</label>
+		<textarea id="content" name="content" row="30"><%= @notice.content %></textarea>
+	</div>
+	
+	<div>
+		<button type="submit">저장</button>
+	</div>
+</form>

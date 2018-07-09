@@ -9,7 +9,7 @@
 User.create(email: '201132034', password: '111111',
             student_name: '조민국', grade: '4', phone_number: '010-0000-0000',
             mail: '1@1', bank_name: '국민', bank_account: '45700101290300',
-            department_id: 11, authorization: 2)
+            department_id: 11, authorization: 0)
             
 User.create(email: '201132001', password: '111111',
             student_name: '프로도', grade: '4', phone_number: '010-0000-0000',
@@ -32,3 +32,7 @@ Semester.create(semester_name: '2019년 1학기')
 Semester.create(semester_name: '2019년 2학기')
 Semester.create(semester_name: '2020년 1학기')
 Semester.create(semester_name: '2020년 2학기')
+
+for x in 1..20
+  Notice.create(user_id: 1, title: "#{x}번째 공지글", content: "#{x}번째 공지글 내용")
+end

@@ -1,0 +1,15 @@
+<h1>Notices#show</h1>
+<p>Find me in app/views/notices/show.html.erb</p>
+
+<p><%= @notice.title %></p>
+<p><%=@notice.content %></p>
+<p><%=%></p>
+
+<a href="/notices/edit/<%= @notice.id %>">수정</a>
+
+<form action="/notices/delete/<%= @notice.id %>" method="post">
+	<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+	<button type="submit">삭제</button>
+</form>
+<%= link_to "Download noticeAttachment", @notice.attachment, 
+    download: "#{@notice.title} 첨부파일" %>

@@ -56,4 +56,5 @@
   </form>
 <% end %>
 
-<%= link_to "Download file", @selectedRoom.attachment, download: "download" %>
+<%= link_to "Download portfolio", @selectedRoom.attachment, 
+    download: "#{@selectedRoom.user.student_name} 포트폴리오" %>

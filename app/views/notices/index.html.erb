@@ -1,0 +1,27 @@
+<h1>Notices#index</h1>
+<p>Find me in app/views/notices/index.html.erb</p>
+
+<table>
+  <thead>
+    <tr>
+      <td>no</td>
+      <td>제목</td>
+      <td>작성자</td>
+      <td>조회수</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @notices.each do |n| %>
+      <tr>
+        <td><%= n.id %></td>
+        <td>
+          <a href="/notices/show/<%= n.id %>"><%= n.title %></a>
+        </td>
+        <td>관리자</td>
+        <td><%= n.hit %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<a href="/notices/new">New Notice</a>
