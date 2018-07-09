@@ -22,6 +22,29 @@ class StudentsController < ApplicationController
     
     apply.save
   end
+
+  # 멘토 신청 수정 (Edit)
+  def applyMentorEdit
+    @semesters = Semester.all
+    @apply = MentorApply.find_by(:user_id => current_user.id)
+  end
+
+  # 멘토 신청 수정 (Update)
+  def applyMentorUpdate
+    @apply = MentorApply.find_by(:user_id => current_user.id)
+    @apply.semester_id = params[:semester_id]
+    @apply.team_name = params[:team_name]
+    @apply.subject = params[:subject]
+    @apply.purpose = params[:purpose]
+    @apply.content = params[:content]
+    @apply.method = params[:method]
+    ## 파일 업로드
+    uploader = AttachmentUploader.new
+    uploader.store!(params[:attachment])
+    @apply.attachment = uploader.url
+
+    @apply.save
+  end
   
   # 멘토방 목록 조회
   def findAllRooms
