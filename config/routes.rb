@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get 'notices/show/:notice_id' => 'notices#show'
   post 'notices/delete/:notice_id' => 'notices#delete'
   
+  
   ## 멘토방 목록 조회
   get 'students/findAllRooms'
   

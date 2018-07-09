@@ -1,7 +1,7 @@
 <h1>Notices#new</h1>
 <p>Find me in app/views/notices/new.html.erb</p>
 
-<form action="/notices/create">
+<form action="/notices/create" method="post" enctype="multipart/form-data">
 	<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
 	<div>
 		<label for="title">제목</label>
