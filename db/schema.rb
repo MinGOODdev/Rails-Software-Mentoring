@@ -26,7 +26,7 @@ ActiveRecord::Schema.define(version: 20180709092354) do
     t.string   "content",                  null: false
     t.string   "method",                   null: false
     t.integer  "semester_id"
-    t.string   "attachment",  default: "", null: false
+    t.string   "attachment",  default: ""
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
   end
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 20180709092354) do
     t.string   "content",                         null: false
     t.string   "method",                          null: false
     t.integer  "semester_id"
-    t.string   "attachment",      default: "",    null: false
+    t.string   "attachment",      default: ""
     t.boolean  "mid_report_ok",   default: false
     t.boolean  "final_report_ok", default: false
     t.datetime "created_at",                      null: false
@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20180709092354) do
     t.integer  "user_id"
     t.string   "title"
     t.string   "content"
-    t.string   "attachment", default: "", null: false
+    t.string   "attachment", default: ""
     t.integer  "hit",        default: 0,  null: false
     t.datetime "created_at",              null: false
     t.datetime "updated_at",              null: false

@@ -5,7 +5,7 @@ class CreateNotices < ActiveRecord::Migration[5.0]
       t.integer :user_id
       t.string :title
       t.string :content
-      t.string :attachment, null: false, default: ""
+      t.string :attachment, default: ""
       t.integer :hit, null: false, default: 0
 
       t.timestamps null: false

@@ -9,7 +9,7 @@ class CreateMentorRooms < ActiveRecord::Migration[5.0]
       t.string :content, null: false
       t.string :method, null: false
       t.integer :semester_id
-      t.string :attachment, null: false, default: ""
+      t.string :attachment, default: ""
       t.boolean :mid_report_ok, default: false
       t.boolean :final_report_ok, default: false
 
