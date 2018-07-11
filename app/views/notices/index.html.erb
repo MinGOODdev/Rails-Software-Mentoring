@@ -1,7 +1,12 @@
-<h1>Notices#index</h1>
-<p>Find me in app/views/notices/index.html.erb</p>
+<div class="float-left" style="margin-right: 10px;">
+  <h3>공지사항</h3>
+</div>
 
-<!-- 정렬을 구현중 -->
+<!-- 새 글 작성 버튼 -->
+<a href="/notices/new"><button class="btn btn-warning btn-sm">New Notice</button></a>
+<!-- ./ 새 글 작성 버튼 -->
+
+<!-- 정렬 구현 -->
 <!--<form action="/notices/index">-->
 <!--  <select id="order_by" name="order_by">-->
 <!--    <option value='0'>없음</option>-->
@@ -13,40 +18,45 @@
 <!--</form>-->
 <!-- ./ 정렬 구현 -->
 
-<table>
-  <thead>
-    <tr>
-      <td>no</td>
-      <td>제목</td>
-      <td>작성자</td>
-      <td>조회수</td>
-    </tr>
-  </thead>
-  <tbody>
-    <% @notices.each do |n| %>
+<div class="table-responsive">
+  <table class="table table-hover table-bordered">
+    <thead class="thead-light">
       <tr>
-        <td><%= n.id %></td>
-        <td>
-          <a href="/notices/show/<%= n.id %>"><%= n.title %></a>
-        </td>
-        <td>관리자</td>
-        <td><%= n.hit %></td>
+        <th>No</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>조회수</th>
+        <th>Time</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <% @notices.each do |n| %>
+        <tr>
+          <td><%= n.id %></td>
+          <td>
+            <a href="/notices/show/<%= n.id %>" style="color: #ffc107;"><%= n.title %></a>
+          </td>
+          <td>관리자</td>
+          <td><%= n.hit %></td>
+          <td><%= n.updated_at.strftime("%Y-%m-%d-%T") %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<!-- 검색 구현 -->
-<form action="/notices/index">
-  <select id="sb" name="sb">
-    <option value='1'>제목</option>
-    <option value='2'>내용</option>
-  </select>
-  <input type="text" name="st">
-  <button type="submit">검색</button>
-</form>
-<!-- ./ 검색 구현 -->
+  <!-- 검색 구현 -->
+  <div class="float-right">
+    <form class="form-group form-inline my-2 my-lg-0" action="/notices/index">
+      <select class="form-control form-control-sm mr-sm-2" id="sb" name="sb">
+        <option value='1'>제목</option>
+        <option value='2'>내용</option>
+      </select>
+      <input class="form-control form-control-sm mr-sm-2" type="text" name="st" placeholder="Search Text">
+      <button class="btn btn-warning btn-sm my-2 my-sm-0" type="submit">검색</button>
+    </form>
+  </div>
+  <!-- ./ 검색 구현 -->
 
-<%= paginate @notices %>
+  <%= paginate @notices %>
 
-<a href="/notices/new">New Notice</a>
+</div>

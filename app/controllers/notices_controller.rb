@@ -2,7 +2,7 @@ class NoticesController < ApplicationController
   def index
     # @notices = Notice.all
 
-    # 정렬 구현
+    # 정렬
     # if params[:order_by] == nil
     #   @notices = Notice.order("created_at DESC").page params[:page]
     # elsif params[:order_by] == '1'
@@ -15,7 +15,7 @@ class NoticesController < ApplicationController
     #   @notices = Notice.order("created_at DESC").page params[:page]
     # end
 
-    # 검색 구현
+    # 검색
     if params[:sb] == nil && params[:st] == nil
       @notices = Notice.order("created_at DESC").page params[:page]
     elsif params[:sb] == '1'

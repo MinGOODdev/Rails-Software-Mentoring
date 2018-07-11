@@ -6,18 +6,15 @@
 * 회원가입 (완료)
 * 로그인 (완료)
 * 로그아웃 (완료)
-* 회원 정보 수정
+* 회원 정보 수정 (완료)
 * 마이페이지
 
 ---
 
 ### Mentee
 
-* 공지게시판 CRUD (완료)
-    * uploaded file 수정 (완료)
-    * pagination (완료)
-    * 정렬 (완료)
-    * 검색 (완료)
+* 공지게시판 R (완료)
+    * file download (완료)
     
 * 자유게시판 CRUD
     * uploaded file 수정
@@ -41,14 +38,14 @@
 * 멘티 신청 취소 (완료)
 
 * 멘토 신청 (완료)
-    * 포트폴리오 Upload (완료)
+    * portfolio upload (완료)
 * 멘토 신청 수정 (완료)
-    * 포트폴리오 수정 (완료)
+    * portfolio 수정 (완료)
 * 멘토 신청 취소
 
 * 멘토방 목록 조회 (완료)
 * 해당 멘토방 세부 정보 조회 (완료)
-    * 포트폴리오 Download (완료)
+    * 포트폴리오 download (완료)
 
 ---
 
@@ -60,6 +57,12 @@
 ---
 
 ### Admin (authorization == '0')
+* 공지게시판 CRUD (완료)
+    * uploaded file 수정 (완료)
+    * pagination (완료)
+    * 정렬 (완료)
+    * 검색 (완료)
+    
 * 전체 사용자 조회 (완료)
     * pagination
     * 정렬

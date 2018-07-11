@@ -1,0 +1,95 @@
+<style>
+  .navbar.sticky-top.navbar-expand-lg.navbar-light {
+    margin-top: 15px;
+    background-color: white;
+  }
+</style>
+
+<!-- 메뉴바 -->
+<!--  원본 메뉴바 <nav class="navbar navbar-expand-lg navbar-light"> -->
+<nav class="navbar sticky-top navbar-expand-lg navbar-light">
+  <a class="navbar-brand mb-0 h1" href="/home/index" style="color: #ffc107">SKHU X LikeLion</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <% if current_user == nil %>
+          <a class="nav-link" href="/users/sign_in">Login</a>
+        <% else %>
+          <a class="nav-link" href="/users/sign_out">Logout</a>
+        <% end %>
+      </li>
+      <% if current_user != nil %>
+        <li class="nav-item active">
+          <a class="nav-link" href="/users/edit">My Page</a>
+        </li>
+      <% end %>
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Sample</a>
+      </li>
+
+      <!-- 샘플 Dropdown -->
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Sample
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Sample</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <!-- ./ Dropdown -->
+
+      <!-- 멘토 멘티 신청 Dropdown -->
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Apply
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/students/applyMentorGet">멘토 신청</a>
+          <a class="dropdown-item" href="/students/findAllRooms">전체 멘토방 목록</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <!-- ./ Dropdown -->
+
+      <!-- 게시판 Dropdown -->
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Board
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/notices/index">공지</a>
+          <a class="dropdown-item" href="#">자유</a>
+          <a class="dropdown-item" href="#">문의</a>
+        </div>
+      </li>
+      <!-- ./ Dropdown -->
+
+      <!-- 관리자 권한 Dropdown -->
+      <% if current_user != nil && current_user.authorization == '0' %>
+        <li class="nav-item dropdown active">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Admin
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="/admin/findAllUsers">전체 사용자</a>
+            <a class="dropdown-item" href="/admin/mentorApplyUsers">멘토 신청자 목록</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+          </div>
+        </li>
+      <% end %>
+      <!-- ./ Dropdown -->
+    </ul>
+  </div>
+</nav>
+<!-- ./ 메뉴바 -->
+
+<hr/>

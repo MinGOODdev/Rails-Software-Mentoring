@@ -13,3 +13,36 @@
  *= require_tree .
  *= require_self
  */
+
+* {
+    font-family: 'Jua', sans-serif;
+    font-size: 14pt;
+}
+
+.div-margin-top {
+    margin-top: 10px;
+}
+
+.div-margin-bottom {
+    margin-bottom: 30px;
+}
+
+/* Pagination (kaminari) */
+.my-page {
+    position: relative;
+    display: block;
+    padding: .10rem .50rem;
+    margin-left: -1px;
+    line-height: 1.25;
+    color: #ffc107;
+    background-color: #fff;
+    /*border: 1px solid #ffc107*/
+}
+
+.page-item.active .my-page {
+    z-index: 1;
+    color: #fff;
+    background-color: #ffc107;
+    border-color: #ffc107;
+}
+/* ./ Pagination (kaminari) */

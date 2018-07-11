@@ -1,15 +1,19 @@
-<h1>Notices#show</h1>
-<p>Find me in app/views/notices/show.html.erb</p>
+<h3><%= @notice.title %></h3>
+<% if @notice.attachment != nil %>
+  <%= link_to "첨부파일 다운로드", @notice.attachment, download: "#{@notice.title} 첨부파일" %>
+<% else %>
+  <p style="color: gray;">첨부파일 없음</p>
+<% end %>
 
-<p><%= @notice.title %></p>
-<p><%=@notice.content %></p>
-<p><%=%></p>
+<hr/>
 
-<a href="/notices/edit/<%= @notice.id %>">수정</a>
+<h5><%=@notice.content.html_safe %></h5>
 
-<form action="/notices/delete/<%= @notice.id %>" method="post">
+<hr/>
+
+<form class="float-right div-margin-bottom" action="/notices/delete/<%= @notice.id %>" method="post">
 	<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-	<button type="submit">삭제</button>
+  <a href="/notices/index"><button type="button" class="btn btn-info btn-sm">목록</button></a>
+  <a href="/notices/edit/<%= @notice.id %>"><button type="button" class="btn btn-warning btn-sm">수정</button></a>
+	<button class="btn btn-danger btn-sm" type="submit">삭제</button>
 </form>
-<%= link_to "Download noticeAttachment", @notice.attachment, 
-    download: "#{@notice.title} 첨부파일" %>
