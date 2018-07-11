@@ -2,16 +2,16 @@
 <p>Find me in app/views/notices/index.html.erb</p>
 
 <!-- 정렬을 구현중 -->
-<form action="/notices/index">
-  <select id="order_by" name="order_by">
-    <option value='0'>없음</option>
-    <option value='1'>제목</option>
-    <option value='2'>작성자</option>
-    <option value='3'>조회수</option>
-  </select>
-  <button type="submit">선택</button>
-</form>
-<!-- ./ 정렬 구현중 -->
+<!--<form action="/notices/index">-->
+<!--  <select id="order_by" name="order_by">-->
+<!--    <option value='0'>없음</option>-->
+<!--    <option value='1'>제목</option>-->
+<!--    <option value='2'>작성자</option>-->
+<!--    <option value='3'>조회수</option>-->
+<!--  </select>-->
+<!--  <button type="submit">선택</button>-->
+<!--</form>-->
+<!-- ./ 정렬 구현 -->
 
 <table>
   <thead>
@@ -35,6 +35,17 @@
     <% end %>
   </tbody>
 </table>
+
+<!-- 검색 구현 -->
+<form action="/notices/index">
+  <select id="sb" name="sb">
+    <option value='1'>제목</option>
+    <option value='2'>내용</option>
+  </select>
+  <input type="text" name="st">
+  <button type="submit">검색</button>
+</form>
+<!-- ./ 검색 구현 -->
 
 <%= paginate @notices %>
 

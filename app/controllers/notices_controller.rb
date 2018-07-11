@@ -1,16 +1,27 @@
 class NoticesController < ApplicationController
   def index
     # @notices = Notice.all
-    if params[:order_by] == nil
+
+    # 정렬 구현
+    # if params[:order_by] == nil
+    #   @notices = Notice.order("created_at DESC").page params[:page]
+    # elsif params[:order_by] == '1'
+    #   @notices = Notice.order("title").page params[:page]
+    # elsif params[:order_by] == '2'
+    #   @notices = Notice.order("user_id").page params[:page]
+    # elsif params[:order_by] == '3'
+    #   @notices = Notice.order("hit DESC").page params[:page]
+    # else
+    #   @notices = Notice.order("created_at DESC").page params[:page]
+    # end
+
+    # 검색 구현
+    if params[:sb] == nil && params[:st] == nil
       @notices = Notice.order("created_at DESC").page params[:page]
-    elsif params[:order_by] == '1'
-      @notices = Notice.order("title").page params[:page]
-    elsif params[:order_by] == '2'
-      @notices = Notice.order("user_id").page params[:page]
-    elsif params[:order_by] == '3'
-      @notices = Notice.order("hit DESC").page params[:page]
-    else
-      @notices = Notice.order("created_at DESC").page params[:page]
+    elsif params[:sb] == '1'
+      @notices = Notice.where("title like ?", "%#{params[:st]}%").page params[:page]
+    elsif params[:sb] == '2'
+      @notices = Notice.where("content like ?", "%#{params[:st]}%").page params[:page]
     end
   end
 

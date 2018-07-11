@@ -16,7 +16,7 @@
     * uploaded file 수정 (완료)
     * pagination (완료)
     * 정렬 (완료)
-    * 검색
+    * 검색 (완료)
 * 자유게시판 CRUD
     * uploaded file 수정
     * pagination
@@ -61,6 +61,7 @@
 * 멘토 신청자 조회 (완료)
     * pagination
 * 멘토 신청자 세부 정보 조회
+* 멘토 신청자 신청 내역 삭제
 * 멘토 권한 승인 (완료)
 * 멘토방 개설 (완료)
 * 멘토방 삭제
