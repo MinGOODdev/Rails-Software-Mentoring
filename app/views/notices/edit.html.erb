@@ -1,19 +1,30 @@
-<form action="/notices/update/<%= @notice.id %>" method="post" enctype="multipart/form-data">
+<style>
+  .notice-edit-div {
+    margin-top: 5px;
+  }
+</style>
+
+<h3>공지사항 수정</h3>
+
+<form action="/notices/update/<%= @notice.id %>" class="form-group" method="post" enctype="multipart/form-data">
 	<%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-	<div>
+	<div class="div-margin-top">
 		<label for="title">제목</label>
-		<input id="title" name="title" value="<%= @notice.title %>">
+		<input class="form-control" id="title" name="title" value="<%= @notice.title %>">
 	</div>
-	<div>
+
+	<div class="div-margin-top">
 		<label for="content">내용</label>
-		<textarea id="content" name="content" row="30"><%= @notice.content %></textarea>
+    <%= tinymce %>
+		<textarea class="form-control tinymce" id="content" name="content" rows="20"><%= @notice.content %></textarea>
 	</div>
-	<div>
+
+	<div class="div-margin-top">
     <label for="attachment">첨부파일</label>
-    <input type="file" id="attachment" name="attachment" placeholder="(선택)첨부파일">
+    <input class="form-control-file" type="file" id="attachment" name="attachment" placeholder="(선택)첨부파일">
   </div>
 	
-	<div>
-		<button type="submit">저장</button>
+	<div class="div-margin-top">
+		<button class="btn btn-warning btn-sm" type="submit">저장</button>
 	</div>
 </form>
