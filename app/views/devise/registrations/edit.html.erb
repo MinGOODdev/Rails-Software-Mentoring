@@ -13,6 +13,15 @@
     <%= f.input :password, autocomplete: "off", hint: "leave it blank if you don't want to change it", required: false %>
     <%= f.input :password_confirmation, required: false %>
     <%= f.input :current_password, hint: "we need your current password to confirm your changes", required: true %>
+
+    <!-- 새로 추가한 항목들 -->
+    <%= f.input :student_name, required: true, label: false, placeholder: '이름을 입력하세요.' %>
+    <%= f.input :grade, required: true, label: false, placeholder: '학년을 입력하세요.' %>
+    <%= f.input :phone_number, required: true, label: false, placeholder: '핸드폰 번호를 입력하세요.' %>
+    <%= f.input :mail, required: true, label: false, placeholder: 'email을 입력하세요.' %>
+    <%= f.collection_select(:department_id, Department.all, :id, :department_name, :prompt => true) %>
+    <%= f.input :bank_name, required: true, label: false, placeholder: '거래 은행을 입력하세요.' %>
+    <%= f.input :bank_account, required: true, label: false, placeholder: '은행 계좌를 입력하세요.' %>
   </div>
 
   <div class="form-actions">
