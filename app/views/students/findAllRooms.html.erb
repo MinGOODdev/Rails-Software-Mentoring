@@ -1,3 +1,104 @@
-<% @mentorRooms.each do |m| %>
-  <p><a href="/students/findOneRoom/<%= m.id %>"><%= m.user.student_name %></a></p>
-<% end %>
+<style>
+  .custom-card {
+    width: 18rem;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10px;
+  }
+</style>
+
+<%# @mentorRooms.each do |m| %>
+<!--  <p><a href="/students/findOneRoom/<%#= m.id %>"><%#= m.user.student_name %></a></p>-->
+<%# end %>
+
+
+<div style="text-align: center;">
+  <h3>전체 멘토방</h3>
+  <div class="container">
+
+    <!-- 샘플 이미지 틀 -->
+    <div class="row">
+      <% @mentorRooms.each do |m| %>
+        <div class="col-sm">
+          <div class="card custom-card">
+            <img class="card-img-top" src="/img/default-user-image.png" alt="Card image cap">
+            <div class="card-body">
+              <h5 class="card-title"><%= m.user.student_name %></h5>
+              <p class="card-text"><%= m.subject %></p>
+              <a href="/students/findOneRoom/<%= m.id %>" class="btn btn-warning btn-sm">Detail</a>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+      <div class="col-sm">
+        <div class="card custom-card">
+          <img class="card-img-top" src="/img/default-user-image.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm">
+        <div class="card custom-card">
+          <img class="card-img-top" src="/img/default-user-image.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm">
+        <div class="card custom-card">
+          <img class="card-img-top" src="/img/default-user-image.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm">
+        <div class="card custom-card">
+          <img class="card-img-top" src="/img/default-user-image.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm">
+        <div class="card custom-card">
+          <img class="card-img-top" src="/img/default-user-image.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm">
+        <div class="card custom-card">
+          <img class="card-img-top" src="/img/default-user-image.png" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <a href="#" class="btn btn-primary">Go somewhere</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ./ 샘플 이미지 틀 -->
+
+
+  </div>
+</div>

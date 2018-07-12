@@ -1,46 +1,52 @@
-<h1>mentors#applyGet</h1>
-<div class="col-lg-12">
-  <form action="/students/applyMentorPost" method="post" enctype="multipart/form-data">
-    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-    <div>
-      <label for="semester_id">학기</label>
-      <select id="semester_id" name="semester_id">
-        <% @semesters.each do |sem| %>
-          <% if sem.semester_able %>
-            <option value='<%= sem.id %>'><%= sem.semester_name %></option>
-          <% end %>
-        <% end %>
-      </select>
-    </div>
-    <div>
-      <label for="team_name">팀 이름</label>
-      <input id="team_name" name="team_name" placeholder="팀 이름을 입력해주세요">
-    </div>
-    <div>
-      <label for="subject">멘토링 주제</label>
-      <input id="subject" name="subject" placeholder="멘토링 주제를 입력해주세요">
-    </div>
-    <div>
-      <label for="purpose">학습 목표</label>
-      <textarea id="purpose" name="purpose" rows="30" placeholder="학습 목표를 입력해주세요"></textarea>
-    </div>
-    <div>
-      <label for="content">내용</label>
-      <textarea id="content" name="content" rows="30" placeholder="내용을 입력해주세요"></textarea>
-    </div>
-    <div>
-      <label for="method">학습 방법</label>
-      <textarea id="method" name="method" rows="30" placeholder="학습 방법을 입력해주세요"></textarea>
-    </div>
-    <div>
-      <label for="attachment">포트폴리오</label>
-      <input type="file" id="attachment" name="attachment" placeholder="(선택)포트폴리오">
-    </div>
+<h3>멘토 신청서</h3>
 
-    <div>
-      <button type="button">목록</button>
-      <button type="reset">초기화</button>
-      <button type="submit">저장</button>
-    </div>
-  </form>
-</div>
+<form action="/students/applyMentorPost" class="form-group" method="post" enctype="multipart/form-data">
+  <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+
+  <div class="div-margin-top" style="width: 20%;">
+    <label for="semester_id">해당 학기</label>
+    <select class="form-control" id="semester_id" name="semester_id">
+      <% @semesters.each do |sem| %>
+        <% if sem.semester_able %>
+          <option value='<%= sem.id %>'><%= sem.semester_name %></option>
+        <% end %>
+      <% end %>
+    </select>
+  </div>
+
+  <div class="div-margin-top" style="width: 50%;">
+    <label for="team_name">팀 이름</label>
+    <input class="form-control" id="team_name" name="team_name" placeholder="팀 이름을 입력해주세요">
+  </div>
+
+  <div class="div-margin-top" style="width: 50%;">
+    <label for="subject">멘토링 주제</label>
+    <input class="form-control" id="subject" name="subject" placeholder="멘토링 주제를 입력해주세요">
+  </div>
+
+  <div class="div-margin-top">
+    <label for="purpose">학습 목표</label>
+    <textarea class="form-control" id="purpose" name="purpose" rows="10" placeholder="학습 목표를 입력해주세요"></textarea>
+  </div>
+
+  <div class="div-margin-top">
+    <label for="content">내용</label>
+    <textarea class="form-control" id="content" name="content" rows="10" placeholder="내용을 입력해주세요"></textarea>
+  </div>
+
+  <div class="div-margin-top">
+    <label for="method">학습 방법</label>
+    <textarea class="form-control" id="method" name="method" rows="10" placeholder="학습 방법을 입력해주세요"></textarea>
+  </div>
+
+  <div class="div-margin-top">
+    <label for="attachment">포트폴리오</label>
+    <input class="form-control-file" type="file" id="attachment" name="attachment" placeholder="(선택)포트폴리오">
+  </div>
+
+  <hr/>
+
+  <div class="div-margin-top div-margin-bottom float-right">
+    <button class="btn btn-warning" type="submit">저장</button>
+  </div>
+</form>
