@@ -32,6 +32,10 @@ Rails.application.routes.draw do
   ## 멘토 신청 수정
   get 'students/applyMentorEdit'
   post 'students/applyMentorUpdate'
+
+  ## 시간표 등록
+  get 'time/timeTableGet'
+  post 'time/timeTablePost'
   
   
   # 멘토 ROUTES

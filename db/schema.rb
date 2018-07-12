@@ -10,12 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180709092354) do
+ActiveRecord::Schema.define(version: 20180712165536) do
 
   create_table "departments", force: :cascade do |t|
     t.string   "department_name"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "fridays", force: :cascade do |t|
+    t.integer  "user_id"
+    t.boolean  "am_nine_to_ten",      default: false
+    t.boolean  "am_ten_to_eleven",    default: false
+    t.boolean  "am_eleven_to_twelve", default: false
+    t.boolean  "pm_twelve_to_one",    default: false
+    t.boolean  "pm_one_to_two",       default: false
+    t.boolean  "pm_two_to_three",     default: false
+    t.boolean  "pm_three_to_four",    default: false
+    t.boolean  "pm_four_to_five",     default: false
+    t.boolean  "pm_five_to_six",      default: false
+    t.boolean  "pm_six_to_seven",     default: false
+    t.boolean  "pm_seven_to_eight",   default: false
+    t.boolean  "pm_eight_to_nine"
+    t.boolean  "pm_nine_to_ten",      default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "mentor_applies", force: :cascade do |t|
@@ -44,6 +63,25 @@ ActiveRecord::Schema.define(version: 20180709092354) do
     t.boolean  "final_report_ok", default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+  end
+
+  create_table "mondays", force: :cascade do |t|
+    t.integer  "user_id"
+    t.boolean  "am_nine_to_ten",      default: false
+    t.boolean  "am_ten_to_eleven",    default: false
+    t.boolean  "am_eleven_to_twelve", default: false
+    t.boolean  "pm_twelve_to_one",    default: false
+    t.boolean  "pm_one_to_two",       default: false
+    t.boolean  "pm_two_to_three",     default: false
+    t.boolean  "pm_three_to_four",    default: false
+    t.boolean  "pm_four_to_five",     default: false
+    t.boolean  "pm_five_to_six",      default: false
+    t.boolean  "pm_six_to_seven",     default: false
+    t.boolean  "pm_seven_to_eight",   default: false
+    t.boolean  "pm_eight_to_nine"
+    t.boolean  "pm_nine_to_ten",      default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
   create_table "notices", force: :cascade do |t|
@@ -79,6 +117,44 @@ ActiveRecord::Schema.define(version: 20180709092354) do
     t.datetime "updated_at",                   null: false
   end
 
+  create_table "thursdays", force: :cascade do |t|
+    t.integer  "user_id"
+    t.boolean  "am_nine_to_ten",      default: false
+    t.boolean  "am_ten_to_eleven",    default: false
+    t.boolean  "am_eleven_to_twelve", default: false
+    t.boolean  "pm_twelve_to_one",    default: false
+    t.boolean  "pm_one_to_two",       default: false
+    t.boolean  "pm_two_to_three",     default: false
+    t.boolean  "pm_three_to_four",    default: false
+    t.boolean  "pm_four_to_five",     default: false
+    t.boolean  "pm_five_to_six",      default: false
+    t.boolean  "pm_six_to_seven",     default: false
+    t.boolean  "pm_seven_to_eight",   default: false
+    t.boolean  "pm_eight_to_nine"
+    t.boolean  "pm_nine_to_ten",      default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  create_table "tuesdays", force: :cascade do |t|
+    t.integer  "user_id"
+    t.boolean  "am_nine_to_ten",      default: false
+    t.boolean  "am_ten_to_eleven",    default: false
+    t.boolean  "am_eleven_to_twelve", default: false
+    t.boolean  "pm_twelve_to_one",    default: false
+    t.boolean  "pm_one_to_two",       default: false
+    t.boolean  "pm_two_to_three",     default: false
+    t.boolean  "pm_three_to_four",    default: false
+    t.boolean  "pm_four_to_five",     default: false
+    t.boolean  "pm_five_to_six",      default: false
+    t.boolean  "pm_six_to_seven",     default: false
+    t.boolean  "pm_seven_to_eight",   default: false
+    t.boolean  "pm_eight_to_nine"
+    t.boolean  "pm_nine_to_ten",      default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",  null: false
     t.string   "encrypted_password",     default: "",  null: false
@@ -102,6 +178,25 @@ ActiveRecord::Schema.define(version: 20180709092354) do
     t.datetime "updated_at",                           null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "wednesdays", force: :cascade do |t|
+    t.integer  "user_id"
+    t.boolean  "am_nine_to_ten",      default: false
+    t.boolean  "am_ten_to_eleven",    default: false
+    t.boolean  "am_eleven_to_twelve", default: false
+    t.boolean  "pm_twelve_to_one",    default: false
+    t.boolean  "pm_one_to_two",       default: false
+    t.boolean  "pm_two_to_three",     default: false
+    t.boolean  "pm_three_to_four",    default: false
+    t.boolean  "pm_four_to_five",     default: false
+    t.boolean  "pm_five_to_six",      default: false
+    t.boolean  "pm_six_to_seven",     default: false
+    t.boolean  "pm_seven_to_eight",   default: false
+    t.boolean  "pm_eight_to_nine"
+    t.boolean  "pm_nine_to_ten",      default: false
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
   end
 
 end
