@@ -1,48 +1,57 @@
-<table>
-  <thead>
-    <tr>
-      <td>학번</td>
-      <td>이름</td>
-      <td>소속</td>
-      <td>학년</td>
-      <td>전화번호</td>
-      <td>이메일</td>
-      <td>은행/계좌</td>
-      <td>권한</td>
-    </tr>
-  </thead>
-  <tbody>
-    <form action="/admin/userAuthChange" method="post">
-      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-      <% @users.each do |u| %>
-        <tr>
-          <td><%= u.email %></td>
-          <td><%= u.student_name %></td>
-          <td><%= u.department.department_name %></td>
-          <td><%= u.grade %></td>
-          <td><%= u.phone_number %></td>
-          <td><%= u.mail %></td>
-          <td><%= u.bank_name %>/<%= u.bank_account %></td>
-          <td>
-            <% if u.authorization == '0' %>
-            <!--radio_button_tag 'color', "green", true, class: "color_input"-->
-            <!--radio_button_tag(name, value, checked = false, options = {})-->
-              <%= radio_button_tag u.id, '2', false %> 멘티
-              <%= radio_button_tag u.id, '1', false %> 멘토
-              <%= radio_button_tag u.id, '0', true %> 관리자
-            <% elsif u.authorization == '1' %>
-              <%= radio_button_tag u.id, '2', false %> 멘티
-              <%= radio_button_tag u.id, '1', true %> 멘토
-              <%= radio_button_tag u.id, '0', false %> 관리자
-            <% else %>
-              <%= radio_button_tag u.id, '2', true %> 멘티
-              <%= radio_button_tag u.id, '1', false %> 멘토
-              <%= radio_button_tag u.id, '0', false %> 관리자
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-      <button type="submit">저장</button>
-    </form>
-  </tbody>
-</table>
+<h3>전체 회원</h3>
+<div class="table-responsive">
+  <table class="table table-hover table-bordered">
+    <thead class="thead-light">
+      <tr>
+        <th>학번</th>
+        <th>이름</th>
+        <th>소속</th>
+        <th>학년</th>
+        <th>전화번호</th>
+        <th>이메일</th>
+        <th>은행/계좌</th>
+        <th>권한</th>
+      </tr>
+    </thead>
+    <tbody>
+      <form action="/admin/userAuthChange" method="post">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <% @users.each do |u| %>
+          <tr>
+            <td><%= u.email %></td>
+            <td><%= u.student_name %></td>
+            <td><%= u.department.department_name %></td>
+            <td><%= u.grade %></td>
+            <td><%= u.phone_number %></td>
+            <td><%= u.mail %></td>
+            <td>
+              <%= u.bank_name %> /<br/>
+              <%= u.bank_account %>
+            </td>
+            <td>
+              <% if u.authorization == '0' %>
+              <!--radio_button_tag 'color', "green", true, class: "color_input"-->
+              <!--radio_button_tag(name, value, checked = false, options = {})-->
+                <%= radio_button_tag u.id, '2', false %> 멘티
+                <%= radio_button_tag u.id, '1', false %> 멘토
+                <%= radio_button_tag u.id, '0', true %> 관리자
+              <% elsif u.authorization == '1' %>
+                <%= radio_button_tag u.id, '2', false %> 멘티
+                <%= radio_button_tag u.id, '1', true %> 멘토
+                <%= radio_button_tag u.id, '0', false %> 관리자
+              <% else %>
+                <%= radio_button_tag u.id, '2', true %> 멘티
+                <%= radio_button_tag u.id, '1', false %> 멘토
+                <%= radio_button_tag u.id, '0', false %> 관리자
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+
+        <div class="div-margin-bottom float-right">
+          <button class="btn btn-info btn-sm" type="submit">권한 변경</button>
+        </div>
+      </form>
+    </tbody>
+  </table>
+</div>

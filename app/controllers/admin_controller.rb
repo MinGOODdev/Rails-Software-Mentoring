@@ -7,7 +7,20 @@ class AdminController < ApplicationController
   
   # 멘토 신청자 목록 조회
   def mentorApplyUsers
-    @users = MentorApply.all
+    @mentorApplies = MentorApply.all
+  end
+  
+  # 멘토 신청자 세부 정보 조회
+  def mentorApplyFindOne
+    @mentorApply = MentorApply.find(params[:mentor_apply_id])
+  end
+
+  # 멘토 신청자 신청 내역 삭제
+  def deleteMentorApply
+    mentorApply = MentorApply.find(params[:mentor_apply_id])
+    mentorApply.destroy
+
+    redirect_to '/admin/mentorApplyUsers'
   end
   
   # 멘토 신청 승인 (신청자 권한 멘토로 변경)

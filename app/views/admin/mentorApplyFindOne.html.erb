@@ -1,0 +1,42 @@
+<!-- 해당 멘토방 세부 정보 -->
+<h3><%= @mentorApply.user.department.department_name %> <%= @mentorApply.user.grade %>학년</h3>
+<h3><%= @mentorApply.user.student_name %>의 멘토방</h3>
+<% if @mentorApply.attachment != nil %>
+  <%= link_to "멘토 포트폴리오 다운로드", @mentorApply.attachment, download: "#{@mentorApply.user.student_name} 포트폴리오" %>
+<% else %>
+  <p style="color: gray;">포트폴리오 없음</p>
+<% end %>
+
+<hr/>
+
+<div class="div-margin-bottom">
+  <div class="div-margin-top form-group" style="width: 20%;">
+    <label for="semester_id">해당 학기</label>
+    <input class="form-control" id="semester_id" name="semester_id" value="<%= @mentorApply.semester.semester_name %>" disabled>
+  </div>
+
+  <div class="div-margin-top" style="width: 50%;">
+    <label for="team_name">팀 이름</label>
+    <input class="form-control" id="team_name" name="team_name" value="<%= @mentorApply.team_name %>" disabled>
+  </div>
+
+  <div class="div-margin-top" style="width: 50%;">
+    <label for="subject">멘토링 주제</label>
+    <input class="form-control" id="subject" name="subject" value="<%= @mentorApply.subject %>" disabled>
+  </div>
+
+  <div class="div-margin-top">
+    <label for="purpose">학습 목표</label>
+    <textarea class="form-control" id="purpose" name="purpose" rows="10" disabled><%= @mentorApply.purpose %></textarea>
+  </div>
+
+  <div class="div-margin-top">
+    <label for="content">내용</label>
+    <textarea class="form-control" id="content" name="content" rows="10" disabled><%= @mentorApply.content %></textarea>
+  </div>
+
+  <div class="div-margin-top">
+    <label for="method">학습 방법</label>
+    <textarea class="form-control" id="method" name="method" rows="10" disabled><%= @mentorApply.method %></textarea>
+  </div>
+</div>

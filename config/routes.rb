@@ -47,6 +47,10 @@ Rails.application.routes.draw do
   
   ## 멘토 신청한 유저 목록
   get 'admin/mentorApplyUsers'
+  ## 멘토 신청한 유저 세부 정보
+  get 'admin/mentorApplyFindOne/:mentor_apply_id' => 'admin#mentorApplyFindOne'
+  ## 멘토 신청 내역 삭제
+  get 'admin/deleteMentorApply/:mentor_apply_id' => 'admin#deleteMentorApply'
   ## 멘토 신청자 승인 (신청자 권한 멘토로 변경)
   post 'admin/mentorApplyConfirm'
 
