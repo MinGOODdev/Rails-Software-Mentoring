@@ -8,7 +8,7 @@
 <!-- 메뉴바 -->
 <!--  원본 메뉴바 <nav class="navbar navbar-expand-lg navbar-light"> -->
 <nav class="navbar sticky-top navbar-expand-lg navbar-light">
-  <a class="navbar-brand mb-0 h1" href="/home/index" style="color: #ffc107">SKHU X LikeLion</a>
+  <a class="navbar-brand mb-0 h1" href="/home/index" style="color: #ffc107; font-size: 24pt;">SKHU X LikeLion</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -22,14 +22,31 @@
           <a class="nav-link" href="/users/sign_out">Logout</a>
         <% end %>
       </li>
+
+      <!-- MyPage Dropdown -->
       <% if current_user != nil %>
-        <li class="nav-item active">
-          <a class="nav-link" href="/users/edit">My Page</a>
-        </li>
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          My Menu
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="/users/edit">내 정보 수정</a>
+          <a class="dropdown-item" href="#">가능 시간 체크</a>
+          <a class="dropdown-item" href="#">내 멘토 신청서 수정</a>
+          <a class="dropdown-item" href="#">내가 소속된 멘토방</a>
+          <a class="dropdown-item" href="#">또 뭐가 있을까?</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
       <% end %>
+      <!-- ./ Dropdown -->
+
+      <!-- 샘플 메뉴 -->
       <li class="nav-item active">
         <a class="nav-link" href="#">Sample</a>
       </li>
+      <!-- ./ 샘플 메뉴 -->
 
       <!-- 샘플 Dropdown -->
       <li class="nav-item dropdown active">
