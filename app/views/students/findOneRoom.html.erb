@@ -2,7 +2,8 @@
 <h3><%= @selectedRoom.user.department.department_name %> <%= @selectedRoom.user.grade %>학년</h3>
 <h3><%= @selectedRoom.user.student_name %>의 멘토방</h3>
 <% if @selectedRoom.attachment != nil %>
-  <%= link_to "멘토 포트폴리오 다운로드", @selectedRoom.attachment, download: "#{@selectedRoom.user.student_name} 포트폴리오" %>
+  <%= link_to "멘토 포트폴리오 다운로드", @selectedRoom.attachment,
+              download: "#{@selectedRoom.user.student_name} 포트폴리오" %>
 <% else %>
   <p style="color: gray;">포트폴리오 없음</p>
 <% end %>
@@ -44,57 +45,68 @@
 
   <!-- 멘토방 구성 인원을 출력합니다. -->
   <h5>멘토방 구성 인원</h5>
-  <div class="table-responsive">
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th>이름</th>
-          <th>권한</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @roomMembers.each do |r| %>
-        <tr>
-          <td><%= r.user.student_name %></td>
-          <td>
-            <% if r.user.authorization == '1' %>
-              멘토
-            <% else %>
-              멘티
-            <% end %>
-          </td>
+  <div class="row">
+    <div class="col"></div>
 
-          <!-- 해당 멘토방의 멘토인 경우에만 멘티를 삭제할 수 있습니다. -->
-          <% if current_user.id == @selectedRoom.user_id && r.user.authorization == '2' %>
-          <form action="/mentors/deleteMyMentee/<%= r.user.id %>" method="post">
-            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-            <button class="btn btn-light btn-sm" type="submit">삭제</button>
-          </form>
+    <div class="col-6">
+      <div class="table-responsive text-center">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>이름</th>
+            <th>권한</th>
+            <th>#</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @roomMembers.each do |r| %>
+            <tr>
+              <td><%= r.user.student_name %></td>
+              <td>
+                <% if r.user.authorization == '1' || r.user.authorization == '0' %>
+                  멘토
+                <% else %>
+                  멘티
+                <% end %>
+              </td>
+              <td>
+                <!-- 해당 멘토방의 멘토인 경우에만 멘티를 삭제할 수 있습니다. -->
+                <% if current_user.id == @selectedRoom.user_id && r.user.authorization == '1' %>
+                  <form action="/mentors/deleteMyMentee/<%= r.user.id %>" method="post">
+                    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                    <button class="btn btn-light btn-sm" type="submit">삭제</button>
+                  </form>
+                <% end %>
+              </td>
+            </tr>
           <% end %>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col"></div>
   </div>
 
   <hr/>
-
-  <% if @roomAll.where(:user_id => current_user.id).empty? %>
-    <!-- 신청한 멘토방이 1개라도 있으면 중복 신청 불가능 -->
-    <form action="/students/applyMentee/<%= @selectedRoom.id %>" method="post">
-      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-      <button class="btn btn-warning" type="submit">신청</button>
-    </form>
-  <% else %>
-    <!--
-    멘토방에 신청한 내역이 있다면 1개 밖에 없고,
-    신청 버튼이 없다면 이 멘토방에 신청한 것이기 때문에
-    취소 버튼 활성화
-    -->
-    <form action="/students/deleteApplyMentee/<%= current_user.id %>" method="post">
-      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-      <button class="btn btn-warning" type="submit">신청 취소</button>
-    </form>
+  <% if current_user.authorization == '2' %>
+    <% if @roomAll.where(:user_id => current_user.id).empty? %>
+      <!-- 신청한 멘토방이 1개라도 있으면 중복 신청 불가능 -->
+      <form action="/students/applyMentee/<%= @selectedRoom.id %>" method="post">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <button class="btn btn-warning" type="submit">멘티 신청</button>
+      </form>
+    <% else %>
+      <!--
+      멘토방에 신청한 내역이 있다면 1개 밖에 없고,
+      신청 버튼이 없다면 이 멘토방에 신청한 것이기 때문에
+      취소 버튼 활성화
+      -->
+      <form action="/students/deleteApplyMentee/<%= current_user.id %>" method="post">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <button class="btn btn-warning" type="submit">멘티 신청 취소</button>
+      </form>
+    <% end %>
   <% end %>
 
 </div>

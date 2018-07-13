@@ -1,6 +1,7 @@
 <h3><%= @notice.title %></h3>
 <% if @notice.attachment != nil %>
-  <%= link_to "첨부파일 다운로드", @notice.attachment, download: "#{@notice.title} 첨부파일" %>
+  <%= link_to "첨부파일 다운로드", @notice.attachment,
+              download: "#{@notice.title} 첨부파일" %>
 <% else %>
   <p style="color: gray;">첨부파일 없음</p>
 <% end %>

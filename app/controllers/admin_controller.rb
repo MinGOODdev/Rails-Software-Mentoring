@@ -1,4 +1,8 @@
 class AdminController < ApplicationController
+
+  # TODO
+  # 멘토링 기간이 종료되면 제출된 보고서는 보존하고,
+  # MentorApply, MentorRoom, RoomMember, 요일별 테이블을 모두 비운다.
   
   # 전체 유저 목록 조회
   def findAllUsers
@@ -67,6 +71,8 @@ class AdminController < ApplicationController
         initialize_mentor_time_table(friday, mentorApply)
       end
     end
+
+    redirect_to '/admin/mentorApplyUsers'
   end
 
   # 멘토방 삭제
@@ -83,6 +89,8 @@ class AdminController < ApplicationController
       u.authorization = params[(u.id).to_s]
       u.save
     end
+
+    redirect_to '/admin/findAllUsers'
   end
   
   # 유저 삭제

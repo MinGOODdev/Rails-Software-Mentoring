@@ -1,7 +1,5 @@
 class NoticesController < ApplicationController
   def index
-    # @notices = Notice.all
-
     # 정렬
     # if params[:order_by] == nil
     #   @notices = Notice.order("created_at DESC").page params[:page]
@@ -39,6 +37,8 @@ class NoticesController < ApplicationController
     notice.attachment = uploader.url
     
     notice.save
+
+    redirect_to '/notices/index'
   end
   
   def edit
@@ -57,6 +57,8 @@ class NoticesController < ApplicationController
     
     notice.hit -= 1
     notice.save
+
+    redirect_to "/notices/show/#{notice.id}"
   end
 
   def show

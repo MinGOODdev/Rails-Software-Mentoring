@@ -4,13 +4,16 @@ class MentorsController < ApplicationController
   def deleteMyMentee
     roomMember = RoomMember.find_by(:user_id => params[:user_id])
     roomMember.destroy
+    redirect_to '/students/myMentorRoom'
   end
 
   # 중간 보고서 제출
   def midReportUpdate
     mentorRoom = MentorRoom.find_by(:user_id => current_user.id)
 
-    if MidReport.find_by(:user_id => current_user.id) == nil
+    if MidReport.find_by(:user_id => current_user.id,
+                         :semester_id => mentorRoom.semester_id,
+                         :mentor_room_id => mentorRoom.id) == nil
       midReport = MidReport.new
       midReport.user_id = current_user.id
       midReport.semester_id = mentorRoom.semester_id
@@ -24,7 +27,9 @@ class MentorsController < ApplicationController
 
       redirect_to '/students/myMentorRoom'
     else
-      midReport = MidReport.find_by(:user_id => current_user.id)
+      midReport = MidReport.find_by(:user_id => current_user.id,
+                                    :semester_id => mentorRoom.semester_id,
+                                    :mentor_room_id => mentorRoom.id)
       ## 파일 업로드
       uploader = AttachmentUploader.new
       uploader.store!(params[:attachment])
@@ -40,7 +45,9 @@ class MentorsController < ApplicationController
   def finalReportUpdate
     mentorRoom = MentorRoom.find_by(:user_id => current_user.id)
 
-    if FinalReport.find_by(:user_id => current_user.id) == nil
+    if FinalReport.find_by(:user_id => current_user.id,
+                           :semester_id => mentorRoom.semester_id,
+                           :mentor_room_id => mentorRoom.id) == nil
       finalReport = FinalReport.new
       finalReport.user_id = current_user.id
       finalReport.semester_id = mentorRoom.semester_id
@@ -54,7 +61,9 @@ class MentorsController < ApplicationController
 
       redirect_to '/students/myMentorRoom'
     else
-      finalReport = FinalReport.find_by(:user_id => current_user.id)
+      finalReport = FinalReport.find_by(:user_id => current_user.id,
+                                        :semester_id => mentorRoom.semester_id,
+                                        :mentor_room_id => mentorRoom.id)
       ## 파일 업로드
       uploader = AttachmentUploader.new
       uploader.store!(params[:attachment])

@@ -21,6 +21,8 @@ class StudentsController < ApplicationController
     apply.attachment = uploader.url
 
     apply.save
+
+    redirect_to '/home/index'
   end
 
   # 멘토 신청 수정 (Edit)
@@ -31,19 +33,21 @@ class StudentsController < ApplicationController
 
   # 멘토 신청 수정 (Update)
   def applyMentorUpdate
-    @apply = MentorApply.find_by(:user_id => current_user.id)
-    @apply.semester_id = params[:semester_id]
-    @apply.team_name = params[:team_name]
-    @apply.subject = params[:subject]
-    @apply.purpose = params[:purpose]
-    @apply.content = params[:content]
-    @apply.method = params[:method]
+    apply = MentorApply.find_by(:user_id => current_user.id)
+    apply.semester_id = params[:semester_id]
+    apply.team_name = params[:team_name]
+    apply.subject = params[:subject]
+    apply.purpose = params[:purpose]
+    apply.content = params[:content]
+    apply.method = params[:method]
     ## 파일 업로드
     uploader = AttachmentUploader.new
     uploader.store!(params[:attachment])
-    @apply.attachment = uploader.url
+    apply.attachment = uploader.url
 
-    @apply.save
+    apply.save
+
+    redirect_to '/home/index'
   end
 
   # 멘토 신청 취소
@@ -71,12 +75,14 @@ class StudentsController < ApplicationController
     roomMember.user_id = current_user.id
     roomMember.mentor_room_id = params[:mentor_room_id]
     roomMember.save
+    redirect_to "/students/findOneRoom/#{roomMember.mentor_room_id}"
   end
   
   # 해당 멘토방 멘티 신청 취소
   def deleteApplyMentee
     roomMember = RoomMember.find_by(:user_id => params[:user_id])
     roomMember.destroy
+    redirect_to "/students/findOneRoom/#{roomMember.mentor_room_id}"
   end
   
   # 내가 소속된 멘토방 조회

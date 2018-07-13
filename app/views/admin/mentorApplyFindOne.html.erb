@@ -2,7 +2,8 @@
 <h3><%= @mentorApply.user.department.department_name %> <%= @mentorApply.user.grade %>학년</h3>
 <h3><%= @mentorApply.user.student_name %>의 멘토방</h3>
 <% if @mentorApply.attachment != nil %>
-  <%= link_to "멘토 포트폴리오 다운로드", @mentorApply.attachment, download: "#{@mentorApply.user.student_name} 포트폴리오" %>
+  <%= link_to "멘토 포트폴리오 다운로드", @mentorApply.attachment,
+              download: "#{@mentorApply.user.student_name} 포트폴리오" %>
 <% else %>
   <p style="color: gray;">포트폴리오 없음</p>
 <% end %>

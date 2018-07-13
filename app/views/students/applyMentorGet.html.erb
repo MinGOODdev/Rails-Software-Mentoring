@@ -6,9 +6,9 @@
   <div class="div-margin-top" style="width: 20%;">
     <label for="semester_id">해당 학기</label>
     <select class="form-control" id="semester_id" name="semester_id">
-      <% @semesters.each do |sem| %>
-        <% if sem.semester_able %>
-          <option value='<%= sem.id %>'><%= sem.semester_name %></option>
+      <% @semesters.each do |s| %>
+        <% if s.semester_able %>
+          <option value='<%= s.id %>'><%= s.semester_name %></option>
         <% end %>
       <% end %>
     </select>
@@ -41,7 +41,7 @@
 
   <div class="div-margin-top">
     <label for="attachment">포트폴리오</label>
-    <input class="form-control-file" type="file" id="attachment" name="attachment" placeholder="(선택)포트폴리오">
+    <input class="form-control-file" type="file" id="attachment" name="attachment">
   </div>
 
   <hr/>
