@@ -53,8 +53,27 @@ class AdminController < ApplicationController
         roomMember.user_id = mentorApply.user_id
         roomMember.mentor_room_id = mentorRoom.id
         roomMember.save
+
+        ## 멘토 시간표 초기화
+        monday = Monday.new
+        tuesday = Tuesday.new
+        wednesday = Wednesday.new
+        thursday = Thursday.new
+        friday = Friday.new
+        initialize_mentor_time_table(monday, mentorApply)
+        initialize_mentor_time_table(tuesday, mentorApply)
+        initialize_mentor_time_table(wednesday, mentorApply)
+        initialize_mentor_time_table(thursday, mentorApply)
+        initialize_mentor_time_table(friday, mentorApply)
       end
     end
+  end
+
+  # 멘토방 삭제
+  def mentorRoomDelete
+    mentorRoom = MentorRoom.find(params[:mentor_room_id])
+    mentorRoom.destroy
+    redirect_to '/students/findAllRooms'
   end
   
   # 유저 권한 변경
@@ -64,6 +83,66 @@ class AdminController < ApplicationController
       u.authorization = params[(u.id).to_s]
       u.save
     end
+  end
+  
+  # 유저 삭제
+  def userDelete
+    user = User.find(params[:user_id])
+    user.destroy
+    redirect_to '/admin/findAllUsers'
+  end
+
+  # 학기 관리 (Get)
+  def semesterGet
+    @semesters = Semester.all.reverse
+  end
+
+  # 학기 등록 (Post)
+  def semesterCreate
+    semester = Semester.new
+    semester.semester_name = params[:semester_name]
+    semester.save
+
+    redirect_to '/admin/semesterGet'
+  end
+
+  # 학기 상태 변경
+  def semesterUpdate
+    semester = Semester.find(params[:semester_id])
+    if semester.semester_able == true
+      semester.semester_able = false
+    elsif semester.semester_able == false
+      semester.semester_able = true
+    end
+    semester.save
+
+    redirect_to '/admin/semesterGet'
+  end
+
+  # 학기 삭제
+  def semesterDelete
+    semester = Semester.find(params[:semester_id])
+    semester.destroy
+    redirect_to '/admin/semesterGet'
+  end
+
+  private
+  def initialize_mentor_time_table(day, mentorApply)
+    day.user_id = mentorApply.user.id
+    day.am_nine_to_ten = 0
+    day.am_ten_to_eleven = 0
+    day.am_eleven_to_twelve = 0
+    day.pm_twelve_to_one = 0
+    day.pm_one_to_two = 0
+    day.pm_two_to_three = 0
+    day.pm_three_to_four = 0
+    day.pm_four_to_five = 0
+    day.pm_five_to_six = 0
+    day.pm_six_to_seven = 0
+    day.pm_seven_to_eight = 0
+    day.pm_eight_to_nine = 0
+    day.pm_nine_to_ten = 0
+    day.save
   end
   
 end

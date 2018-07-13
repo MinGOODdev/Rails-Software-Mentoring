@@ -1,0 +1,118 @@
+<!-- 학기 현황 테이블 -->
+<div class="text-center div-margin-bottom div-margin-top">
+  <h3>현재 등록된 학기 현황</h3>
+  <div class="row">
+    <div class="col"></div>
+
+    <div class="col-6">
+      <div class="table-responsive">
+        <table class="table table-bordered">
+          <thead>
+          <tr>
+            <th>학기</th>
+            <th>상태</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @semesters.each do |s| %>
+            <tr>
+              <td><%= s.semester_name %></td>
+              <td>
+                <% if s.semester_able == true %>
+                  활성화
+                <% else %>
+                  비활성화
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col"></div>
+  </div>
+</div>
+<!-- ./ 학기 현황 테이블 -->
+
+<hr/>
+
+<!-- 학기 등록 -->
+<div class="text-center div-margin-bottom div-margin-top">
+  <div class="row">
+    <div class="col"></div>
+
+    <div class="col-10">
+      <h3>학기 등록</h3>
+
+      <form action="/admin/semesterCreate" class="text-center" method="post">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <div class="form-group" style="width: 30%; margin-left: auto; margin-right: auto;">
+          <label for="semester_name"></label>
+          <input class="form-control" id="semester_name" name="semester_name" placeholder="(예시)OOOO년도 O학기">
+        </div>
+        <button class="btn btn-success" type="submit">저장</button>
+      </form>
+    </div>
+
+    <div class="col"></div>
+  </div>
+</div>
+<!-- ./ 학기 등록 -->
+
+<hr/>
+
+<!-- 학기 상태 변경 -->
+<div class="text-center div-margin-bottom div-margin-top">
+  <div class="row">
+    <div class="col"></div>
+
+    <div class="col-10">
+      <h3>해당 학기 상태 변경</h3>
+
+      <form action="/admin/semesterUpdate" class="text-center" method="post">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <div class="form-group" style="width: 30%; margin-left: auto; margin-right: auto;">
+          <select class="form-control" id="semester_id" name="semester_id">
+            <% @semesters.each do |s| %>
+              <option value="<%= s.id %>"><%= s.semester_name %></option>
+            <% end %>
+          </select>
+        </div>
+        <button class="btn btn-warning" type="submit">변경</button>
+      </form>
+    </div>
+
+    <div class="col"></div>
+  </div>
+</div>
+<!-- ./ 학기 상태 변경 -->
+
+<hr/>
+
+<!-- 학기 삭제 -->
+<div class="text-center div-margin-bottom div-margin-top">
+  <div class="row">
+    <div class="col"></div>
+
+    <div class="col-10">
+      <h3>해당 학기 삭제</h3>
+
+      <form action="/admin/semesterDelete" class="text-center" method="post">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <div class="form-group" style="width: 30%; margin-left: auto; margin-right: auto;">
+          <select class="form-control" id="semester_id" name="semester_id">
+            <% @semesters.each do |s| %>
+              <option value="<%= s.id %>"><%= s.semester_name %></option>
+            <% end %>
+          </select>
+        </div>
+        <button class="btn btn-danger" type="submit">삭제</button>
+      </form>
+    </div>
+
+    <div class="col"></div>
+  </div>
+</div>
+<!-- ./ 학기 삭제 -->
