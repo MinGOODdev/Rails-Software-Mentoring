@@ -32,7 +32,7 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/users/edit">내 정보 수정</a>
           <a class="dropdown-item" href="/time/timeTableGet">시간표 체크</a>
-          <% if @mentorApply != nil %>
+          <% if MentorApply.find_by(:user_id => current_user.id) != nil %>
             <a class="dropdown-item" href="/students/applyMentorEdit">내 멘토 신청서 수정</a>
           <% else %>
             <a class="dropdown-item" style="color: gray;">내 멘토 신청서 없음</a>

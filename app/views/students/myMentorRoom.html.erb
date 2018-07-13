@@ -3,54 +3,69 @@
 <h3><%= @roomMember.mentor_room.user.student_name %>의 멘토방</h3>
 <% if @roomMember.mentor_room.attachment != nil %>
   <%= link_to "멘토 포트폴리오 다운로드", @roomMember.mentor_room.attachment, download: "#{@roomMember.mentor_room.user.student_name} 포트폴리오" %>
-<% else %>
-  <p style="color: gray;">포트폴리오 없음</p>
-  <% if current_user.authorization == '2' %>
-    <% if @roomAll.where(:user_id => current_user.id).empty? %>
-      <!-- 신청한 멘토방이 1개라도 있으면 중복 신청 불가능 -->
-      <form action="/students/applyMentee/<%= @roomMember.mentor_room.id %>" method="post">
-        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-        <button class="btn btn-warning" type="submit">신청</button>
-      </form>
-    <% else %>
-      <!--
-      멘토방에 신청한 내역이 있다면 1개 밖에 없고,
-      신청 버튼이 없다면 이 멘토방에 신청한 것이기 때문에
-      취소 버튼 활성화
-      -->
-      <form action="/students/deleteApplyMentee/<%= current_user.id %>" method="post">
-        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-        <button class="btn btn-warning" type="submit">신청 취소</button>
-      </form>
-    <% end %>
-  <% elsif current_user.authorization == '1' %>
+  <% if MidReport.find_by(:user_id => current_user.id, :semester_id => @roomMember.mentor_room.semester.id, :mentor_room_id => @roomMember.mentor_room.id) != nil %>
     <hr/>
-    <!-- TODO 형태를 이쁘게 바꾸고, 이미 제출한 내역이 있으면 제출했었다는 표시도 해주면 좋을 듯 -->
-    <!-- 중간 보고서 -->
-    <div>
-      <form action="/mentors/중간보고서제출" class="form-group" method="post" enctype="multipart/form-data">
-        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-        <label for="attachment">중간 보고서</label>
-        <input class="form-control-file" type="file" id="attachment" name="attachment">
-
-        <div class="div-margin-top div-margin-bottom">
-          <button type="submit" class="btn btn-warning btn-sm">중간 보고서 제출</button>
-        </div>
-      </form>
-    </div>
-    <!-- 최종 보고서 -->
-    <div>
-      <form action="/mentors/최종보고서제출" class="form-group" method="post" enctype="multipart/form-data">
-        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-        <label for="attachment">최종 보고서</label>
-        <input class="form-control-file" type="file" id="attachment" name="attachment">
-
-        <div class="div-margin-top div-margin-bottom">
-          <button type="submit" class="btn btn-warning btn-sm">최종 보고서 제출</button>
-        </div>
-      </form>
+    <div class="alert alert-success" role="alert">
+      이미 업로드된 중간 보고서가 존재합니다. 다시 제출하시면 가장 최근 업로드된 파일로 갱신됩니다.
     </div>
   <% end %>
+  <% if FinalReport.find_by(:user_id => current_user.id, :semester_id => @roomMember.mentor_room.semester.id, :mentor_room_id => @roomMember.mentor_room.id) != nil %>
+    <div class="alert alert-success" role="alert">
+      이미 업로드된 최종 보고서가 존재합니다. 다시 제출하시면 가장 최근 업로드된 파일로 갱신됩니다.
+    </div>
+  <% end %>
+<% else %>
+  <p style="color: gray;">포트폴리오 없음</p>
+  <% if MidReport.find_by(:user_id => current_user.id, :semester_id => @roomMember.mentor_room.semester.id, :mentor_room_id => @roomMember.mentor_room.id) != nil %>
+    <div class="alert alert-success" role="alert">
+      이미 업로드된 중간 보고서가 존재합니다.
+    </div>
+  <% end %>
+  <% if FinalReport.find_by(:user_id => current_user.id, :semester_id => @roomMember.mentor_room.semester.id, :mentor_room_id => @roomMember.mentor_room.id) != nil %>
+    <div class="alert alert-success" role="alert">
+      이미 업로드된 최종 보고서가 존재합니다.
+    </div>
+  <% end %>
+<% end %>
+
+<% if current_user.authorization == '2' %>
+  <% if @roomAll.where(:user_id => current_user.id).empty? %>
+    <!-- 신청한 멘토방이 1개라도 있으면 중복 신청 불가능 -->
+    <form action="/students/applyMentee/<%= @roomMember.mentor_room.id %>" method="post">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <button class="btn btn-warning" type="submit">신청</button>
+    </form>
+  <% else %>
+    <!--
+    멘토방에 신청한 내역이 있다면 1개 밖에 없고,
+    신청 버튼이 없다면 이 멘토방에 신청한 것이기 때문에
+    취소 버튼 활성화
+    -->
+    <form action="/students/deleteApplyMentee/<%= current_user.id %>" method="post">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <button class="btn btn-warning" type="submit">신청 취소</button>
+    </form>
+  <% end %>
+<% elsif current_user.authorization == '1' %>
+  <hr/>
+  <!-- 중간 보고서 -->
+  <div>
+    <form action="/mentors/midReportUpdate" class="form-group form-inline" method="post" enctype="multipart/form-data">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <label style="margin-right: 10px;" for="attachment">중간 보고서</label>
+      <input style="width: 200px;" class="form-control-file" type="file" id="attachment" name="attachment">
+      <button type="submit" class="btn btn-warning btn-sm">중간 보고서 제출</button>
+    </form>
+  </div>
+  <!-- 최종 보고서 -->
+  <div>
+    <form action="/mentors/finalReportUpdate" class="form-group form-inline" method="post" enctype="multipart/form-data">
+      <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+      <label style="margin-right: 10px;" for="attachment">최종 보고서</label>
+      <input style="width: 200px;" class="form-control-file" type="file" id="attachment" name="attachment">
+      <button type="submit" class="btn btn-warning btn-sm">최종 보고서 제출</button>
+    </form>
+  </div>
 <% end %>
 
 <hr/>

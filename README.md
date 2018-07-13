@@ -49,8 +49,8 @@
 ---
 
 ### Mentor (authorization == '1')
-* 중간 보고서 제출(file upload) - ~ing
-* 최종 보고서 제출(file upload) - ~ing
+* 중간 보고서 제출(file upload) (완료)
+* 최종 보고서 제출(file upload) (완료)
 * 본인 멘토방 멘티 삭제 (완료)
 
 ---

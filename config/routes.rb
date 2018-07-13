@@ -46,6 +46,9 @@ Rails.application.routes.draw do
   # 멘토 ROUTES
   ## 내 멘토방 멘티 삭제
   post 'mentors/deleteMyMentee/:user_id' => 'mentors#deleteMyMentee'
+  ## 보고서 제출 (중간, 최종)
+  post 'mentors/midReportUpdate'
+  post 'mentors/finalReportUpdate'
   
   
   # 관리자 ROUTES

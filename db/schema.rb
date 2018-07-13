@@ -10,12 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180712165536) do
+ActiveRecord::Schema.define(version: 20180713165040) do
 
   create_table "departments", force: :cascade do |t|
     t.string   "department_name"
     t.datetime "created_at",      null: false
     t.datetime "updated_at",      null: false
+  end
+
+  create_table "final_reports", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "semester_id"
+    t.integer  "mentor_room_id"
+    t.string   "attachment"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "fridays", force: :cascade do |t|
@@ -63,6 +72,15 @@ ActiveRecord::Schema.define(version: 20180712165536) do
     t.boolean  "final_report_ok", default: false
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
+  end
+
+  create_table "mid_reports", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "semester_id"
+    t.integer  "mentor_room_id"
+    t.string   "attachment"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
   create_table "mondays", force: :cascade do |t|
