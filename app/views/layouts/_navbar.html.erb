@@ -23,8 +23,8 @@
         <% end %>
       </li>
 
-      <!-- MyPage Dropdown -->
       <% if current_user != nil %>
+      <!-- MyPage Dropdown -->
       <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           My Menu
@@ -32,30 +32,17 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/users/edit">내 정보 수정</a>
           <a class="dropdown-item" href="/time/timeTableGet">시간표 체크</a>
-          <a class="dropdown-item" href="#">내 멘토 신청서 수정</a>
-          <a class="dropdown-item" href="#">내가 소속된 멘토방</a>
+          <% if @mentorApply != nil %>
+            <a class="dropdown-item" href="/students/applyMentorEdit">내 멘토 신청서 수정</a>
+          <% else %>
+            <a class="dropdown-item" style="color: gray;">내 멘토 신청서 없음</a>
+          <% end %>
+          <% if @roomMember != nil %>
+            <a class="dropdown-item" href="/students/myMentorRoom">내가 소속된 멘토방</a>
+          <% else %>
+            <a class="dropdown-item" style="color: gray;">내가 소속된 멘토방 없음</a>
+          <% end %>
           <a class="dropdown-item" href="#">또 뭐가 있을까?</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>
-      <% end %>
-      <!-- ./ Dropdown -->
-
-      <!-- 샘플 메뉴 -->
-      <li class="nav-item active">
-        <a class="nav-link" href="#">Sample</a>
-      </li>
-      <!-- ./ 샘플 메뉴 -->
-
-      <!-- 샘플 Dropdown -->
-      <li class="nav-item dropdown active">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Sample
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Sample</a>
-          <a class="dropdown-item" href="#">Another action</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="#">Something else here</a>
         </div>
@@ -65,7 +52,7 @@
       <!-- 멘토 멘티 신청 Dropdown -->
       <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Apply
+          Mentoring
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <a class="dropdown-item" href="/students/applyMentorGet">멘토 신청</a>
@@ -88,6 +75,27 @@
         </div>
       </li>
       <!-- ./ Dropdown -->
+      <% end %>
+
+      <!-- 샘플 메뉴 -->
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Sample</a>
+      </li>
+      <!-- ./ 샘플 메뉴 -->
+
+      <!-- 샘플 Dropdown -->
+      <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Sample
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" href="#">Sample</a>
+          <a class="dropdown-item" href="#">Another action</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+      </li>
+      <!-- ./ Dropdown -->
 
       <!-- 관리자 권한 Dropdown -->
       <% if current_user != nil && current_user.authorization == '0' %>
@@ -96,8 +104,9 @@
             Admin
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="/admin/findAllUsers">전체 사용자</a>
-            <a class="dropdown-item" href="/admin/mentorApplyUsers">멘토 신청자 목록</a>
+            <a class="dropdown-item" href="/admin/findAllUsers">전체 사용자 관리</a>
+            <a class="dropdown-item" href="/admin/mentorApplyUsers">멘토 신청자 관리</a>
+            <a class="dropdown-item" href="/admin/semesterGet">학기 관리</a>
             <div class="dropdown-divider"></div>
             <a class="dropdown-item" href="#">Something else here</a>
           </div>
@@ -105,6 +114,13 @@
       <% end %>
       <!-- ./ Dropdown -->
     </ul>
+    <!-- 현재 로그인 사용자 표시 -->
+    <% if current_user != nil %>
+      <div class="float-right">
+        <h4 style="margin-top: 10px;"><%= current_user.student_name %>님 "hello, world!"</h4>
+      </div>
+    <% end %>
+    <!-- ./ 현재 로그인 사용자 표시 -->
   </div>
 </nav>
 <!-- ./ 메뉴바 -->

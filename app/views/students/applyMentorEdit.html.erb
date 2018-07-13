@@ -5,7 +5,7 @@
 
   <div class="div-margin-top" style="width: 20%;">
     <label for="semester_id">해당 학기</label>
-    <select id="semester_id" name="semester_id">
+    <select class="form-control" id="semester_id" name="semester_id">
       <% @semesters.each do |sem| %>
         <% if sem.semester_able %>
           <option value='<%= sem.id %>'><%= sem.semester_name %></option>
@@ -39,12 +39,18 @@
     <textarea class="form-control" id="method" name="method" rows="10"><%= @apply.method %></textarea>
   </div>
 
+  <hr/>
+
   <div class="div-margin-top">
+    <h5>포트폴리오를 새로 업로드할 경우 기존의 포트폴리오와 대체됩니다.</h5>
     <label for="attachment">포트폴리오</label>
     <input class="form-control-file" type="file" id="attachment" name="attachment" placeholder="(선택)포트폴리오">
   </div>
 
-  <div class="div-margin-top">
-    <button class="btn btn-warning" type="submit">저장</button>
+  <hr/>
+
+  <div class="div-margin-bottom float-right">
+    <button class="btn btn-warning" type="submit">수정</button>
+    <a class="btn btn-danger" href="/students/applyMentorDelete">신청 기록 삭제</a>
   </div>
 </form>
