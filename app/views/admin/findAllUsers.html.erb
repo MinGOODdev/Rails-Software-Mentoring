@@ -11,6 +11,7 @@
         <th>이메일</th>
         <th>은행/계좌</th>
         <th>권한</th>
+        <th>#</th>
       </tr>
     </thead>
     <tbody>
@@ -44,6 +45,9 @@
                 <%= radio_button_tag u.id, '1', false %> 멘토
                 <%= radio_button_tag u.id, '0', false %> 관리자
               <% end %>
+            </td>
+            <td>
+              <a href="/admin/userDelete/<%= u.id %>" class="btn btn-danger btn-sm">삭제</a>
             </td>
           </tr>
         <% end %>

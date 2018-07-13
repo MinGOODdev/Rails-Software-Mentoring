@@ -42,6 +42,11 @@
   <hr/>
 
   <div class="div-margin-top">
+    <% if @apply.attachment != nil %>
+      <div class="alert alert-success" role="alert">
+        이미 업로드된 포트폴리오가 있습니다.
+      </div>
+    <% end %>
     <h5>포트폴리오를 새로 업로드할 경우 기존의 포트폴리오와 대체됩니다.</h5>
     <label for="attachment">포트폴리오</label>
     <input class="form-control-file" type="file" id="attachment" name="attachment" placeholder="(선택)포트폴리오">

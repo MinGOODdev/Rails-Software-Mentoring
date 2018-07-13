@@ -15,9 +15,8 @@
 <div style="text-align: center;">
   <h3>전체 멘토방</h3>
   <div class="container">
-
-    <!-- 샘플 이미지 틀 -->
     <div class="row">
+      <!-- 실제 데이터가 출력되는 이미지 틀 -->
       <% @mentorRooms.each do |m| %>
         <div class="col-sm">
           <div class="card custom-card">
@@ -25,12 +24,18 @@
             <div class="card-body">
               <h5 class="card-title"><%= m.user.student_name %></h5>
               <p class="card-text"><%= m.subject %></p>
-              <a href="/students/findOneRoom/<%= m.id %>" class="btn btn-warning btn-sm">Detail</a>
+              <!-- TODO 인원 / 최대 인원 보여주기 -->
+              <a href="/students/findOneRoom/<%= m.id %>" class="btn btn-warning btn-sm">자세히</a>
+              <% if current_user.authorization == '0' %>
+                <a href="/admin/mentorRoomDelete/<%= m.id %>" class="btn btn-danger btn-sm">삭제</a>
+              <% end %>
             </div>
           </div>
         </div>
       <% end %>
+      <!-- ./ 실제 데이터가 출력되는 이미지 틀 -->
 
+      <!-- 샘플 이미지 틀 -->
       <div class="col-sm">
         <div class="card custom-card">
           <img class="card-img-top" src="/img/default-user-image.png" alt="Card image cap">
@@ -96,9 +101,9 @@
           </div>
         </div>
       </div>
+      <!-- ./ 샘플 이미지 틀 -->
     </div>
-    <!-- ./ 샘플 이미지 틀 -->
-
-
+    <!-- ./ div.row -->
   </div>
+  <!-- ./ div.container -->
 </div>

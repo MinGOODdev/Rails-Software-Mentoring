@@ -37,7 +37,7 @@
           <% else %>
             <a class="dropdown-item" style="color: gray;">내 멘토 신청서 없음</a>
           <% end %>
-          <% if @roomMember != nil %>
+          <% if RoomMember.find_by(:user_id => current_user.id) != nil %>
             <a class="dropdown-item" href="/students/myMentorRoom">내가 소속된 멘토방</a>
           <% else %>
             <a class="dropdown-item" style="color: gray;">내가 소속된 멘토방 없음</a>
