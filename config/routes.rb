@@ -39,7 +39,10 @@ Rails.application.routes.draw do
   get 'time/timeTableGet'
   post 'time/timeTablePost'
   
+  ## 내가 소속된 멘토방 조회
+  get 'students/myMentorRoom'
   
+
   # 멘토 ROUTES
   ## 내 멘토방 멘티 삭제
   post 'mentors/deleteMyMentee/:user_id' => 'mentors#deleteMyMentee'
@@ -50,6 +53,8 @@ Rails.application.routes.draw do
   get 'admin/findAllUsers'
   ## 유저 권한 변경
   post 'admin/userAuthChange' => 'admin#userAuthChange'
+  ## 유저 삭제
+  get 'admin/userDelete/:user_id' => 'admin#userDelete'
   
   ## 멘토 신청한 유저 목록
   get 'admin/mentorApplyUsers'
@@ -57,7 +62,15 @@ Rails.application.routes.draw do
   get 'admin/mentorApplyFindOne/:mentor_apply_id' => 'admin#mentorApplyFindOne'
   ## 멘토 신청 내역 삭제
   get 'admin/deleteMentorApply/:mentor_apply_id' => 'admin#deleteMentorApply'
-  ## 멘토 신청자 승인 (신청자 권한 멘토로 변경)
+  ## 멘토 신청자 승인 (신청자 권한 멘토로 변경 및 멘토방 개설)
   post 'admin/mentorApplyConfirm'
+  ## 멘토방 삭제
+  get 'admin/mentorRoomDelete/:mentor_room_id' => 'admin#mentorRoomDelete'
+
+  ## 학기 관리
+  get 'admin/semesterGet'
+  post 'admin/semesterCreate'
+  post 'admin/semesterUpdate'
+  post 'admin/semesterDelete'
 
 end

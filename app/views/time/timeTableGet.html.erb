@@ -2,6 +2,7 @@
   <h3>나의 시간표 현황</h3>
 </div>
 
+<% if @monday != nil && @tuesday != nil && @wednesday != nil && @thursday != nil && @friday != nil %>
 <div class="row">
   <div class="col"></div>
 
@@ -21,107 +22,107 @@
         <tbody>
           <tr>
             <td>09:00 ~ 10:00</td>
-            <td <% if @monday.am_nine_to_ten != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @tuesday.am_nine_to_ten != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @wednesday.am_nine_to_ten != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @thursday.am_nine_to_ten != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @friday.am_nine_to_ten != nil %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @monday.am_nine_to_ten == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @tuesday.am_nine_to_ten == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @wednesday.am_nine_to_ten == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @thursday.am_nine_to_ten == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @friday.am_nine_to_ten == 1 %> style="background-color: #ffc107;" <% end %>></td>
           </tr>
           <tr>
             <td>10:00 ~ 11:00</td>
-            <td <% if @monday.am_ten_to_eleven != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @tuesday.am_ten_to_eleven != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @wednesday.am_ten_to_eleven != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @thursday.am_ten_to_eleven != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @friday.am_ten_to_eleven != nil %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @monday.am_ten_to_eleven == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @tuesday.am_ten_to_eleven == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @wednesday.am_ten_to_eleven == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @thursday.am_ten_to_eleven == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @friday.am_ten_to_eleven == 1 %> style="background-color: #ffc107;" <% end %>></td>
           </tr>
           <tr>
             <td>11:00 ~ 12:00</td>
-            <td <% if @monday.am_eleven_to_twelve != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @tuesday.am_eleven_to_twelve != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @wednesday.am_eleven_to_twelve != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @thursday.am_eleven_to_twelve != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @friday.am_eleven_to_twelve != nil %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @monday.am_eleven_to_twelve == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @tuesday.am_eleven_to_twelve == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @wednesday.am_eleven_to_twelve == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @thursday.am_eleven_to_twelve == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @friday.am_eleven_to_twelve == 1 %> style="background-color: #ffc107;" <% end %>></td>
           </tr>
           <tr>
             <td>12:00 ~ 13:00</td>
-            <td <% if @monday.pm_twelve_to_one != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @tuesday.pm_twelve_to_one != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @wednesday.pm_twelve_to_one != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @thursday.pm_twelve_to_one != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @friday.pm_twelve_to_one != nil %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @monday.pm_twelve_to_one == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @tuesday.pm_twelve_to_one == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @wednesday.pm_twelve_to_one == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @thursday.pm_twelve_to_one == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @friday.pm_twelve_to_one == 1 %> style="background-color: #ffc107;" <% end %>></td>
           </tr>
           <tr>
             <td>13:00 ~ 14:00</td>
-            <td <% if @monday.pm_one_to_two != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @tuesday.pm_one_to_two != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @wednesday.pm_one_to_two != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @thursday.pm_one_to_two != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @friday.pm_one_to_two != nil %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @monday.pm_one_to_two == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @tuesday.pm_one_to_two == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @wednesday.pm_one_to_two == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @thursday.pm_one_to_two == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @friday.pm_one_to_two == 1 %> style="background-color: #ffc107;" <% end %>></td>
           </tr>
           <tr>
             <td>14:00 ~ 15:00</td>
-            <td <% if @monday.pm_two_to_three != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @tuesday.pm_two_to_three != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @wednesday.pm_two_to_three != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @thursday.pm_two_to_three != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @friday.pm_two_to_three != nil %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @monday.pm_two_to_three == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @tuesday.pm_two_to_three == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @wednesday.pm_two_to_three == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @thursday.pm_two_to_three == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @friday.pm_two_to_three == 1 %> style="background-color: #ffc107;" <% end %>></td>
           </tr>
           <tr>
             <td>15:00 ~ 16:00</td>
-            <td <% if @monday.pm_three_to_four != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @tuesday.pm_three_to_four != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @wednesday.pm_three_to_four != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @thursday.pm_three_to_four != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @friday.pm_three_to_four != nil %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @monday.pm_three_to_four == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @tuesday.pm_three_to_four == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @wednesday.pm_three_to_four == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @thursday.pm_three_to_four == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @friday.pm_three_to_four == 1 %> style="background-color: #ffc107;" <% end %>></td>
           </tr>
           <tr>
             <td>16:00 ~ 17:00</td>
-            <td <% if @monday.pm_four_to_five != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @tuesday.pm_four_to_five != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @wednesday.pm_four_to_five != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @thursday.pm_four_to_five != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @friday.pm_four_to_five != nil %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @monday.pm_four_to_five == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @tuesday.pm_four_to_five == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @wednesday.pm_four_to_five == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @thursday.pm_four_to_five == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @friday.pm_four_to_five == 1 %> style="background-color: #ffc107;" <% end %>></td>
           </tr>
           <tr>
             <td>17:00 ~ 18:00</td>
-            <td <% if @monday.pm_five_to_six != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @tuesday.pm_five_to_six != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @wednesday.pm_five_to_six != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @thursday.pm_five_to_six != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @friday.pm_five_to_six != nil %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @monday.pm_five_to_six == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @tuesday.pm_five_to_six == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @wednesday.pm_five_to_six == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @thursday.pm_five_to_six == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @friday.pm_five_to_six == 1 %> style="background-color: #ffc107;" <% end %>></td>
           </tr>
           <tr>
             <td>18:00 ~ 19:00</td>
-            <td <% if @monday.pm_six_to_seven != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @tuesday.pm_six_to_seven != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @wednesday.pm_six_to_seven != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @thursday.pm_six_to_seven != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @friday.pm_six_to_seven != nil %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @monday.pm_six_to_seven == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @tuesday.pm_six_to_seven == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @wednesday.pm_six_to_seven == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @thursday.pm_six_to_seven == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @friday.pm_six_to_seven == 1 %> style="background-color: #ffc107;" <% end %>></td>
           </tr>
           <tr>
             <td>19:00 ~ 20:00</td>
-            <td <% if @monday.pm_seven_to_eight != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @tuesday.pm_seven_to_eight != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @wednesday.pm_seven_to_eight != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @thursday.pm_seven_to_eight != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @friday.pm_seven_to_eight != nil %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @monday.pm_seven_to_eight == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @tuesday.pm_seven_to_eight == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @wednesday.pm_seven_to_eight == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @thursday.pm_seven_to_eight == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @friday.pm_seven_to_eight == 1 %> style="background-color: #ffc107;" <% end %>></td>
           </tr>
           <tr>
             <td>20:00 ~ 21:00</td>
-            <td <% if @monday.pm_eight_to_nine != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @tuesday.pm_eight_to_nine != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @wednesday.pm_eight_to_nine != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @thursday.pm_eight_to_nine != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @friday.pm_eight_to_nine != nil %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @monday.pm_eight_to_nine == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @tuesday.pm_eight_to_nine == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @wednesday.pm_eight_to_nine == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @thursday.pm_eight_to_nine == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @friday.pm_eight_to_nine == 1 %> style="background-color: #ffc107;" <% end %>></td>
           </tr>
           <tr>
             <td>21:00 ~ 22:00</td>
-            <td <% if @monday.pm_nine_to_ten != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @tuesday.pm_nine_to_ten != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @wednesday.pm_nine_to_ten != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @thursday.pm_nine_to_ten != nil %> style="background-color: #ffc107;" <% end %>></td>
-            <td <% if @friday.pm_nine_to_ten != nil %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @monday.pm_nine_to_ten == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @tuesday.pm_nine_to_ten == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @wednesday.pm_nine_to_ten == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @thursday.pm_nine_to_ten == 1 %> style="background-color: #ffc107;" <% end %>></td>
+            <td <% if @friday.pm_nine_to_ten == 1 %> style="background-color: #ffc107;" <% end %>></td>
           </tr>
         </tbody>
       </table>
@@ -130,6 +131,7 @@
 
   <div class="col"></div>
 </div>
+<% end %>
 
 <hr/>
 
@@ -161,79 +163,118 @@
             <tr>
               <td>09:00 ~ 10:00</td>
               <% for i in 1..5 %>
-                <td><%= check_box_tag "one#{i}", true %></td>
+                <td>
+                  <%= hidden_field_tag :"one#{i}", 0 %>
+                  <%= check_box_tag "one#{i}", 1 %>
+                </td>
               <% end %>
             </tr>
             <tr>
               <td>10:00 ~ 11:00</td>
               <% for i in 1..5 %>
-                <td><%= check_box_tag "two#{i}", true %></td>
+                <td>
+                  <%= hidden_field_tag :"two#{i}", 0 %>
+                  <%= check_box_tag "two#{i}", 1 %>
+                </td>
               <% end %>
             </tr>
             <tr>
               <td>11:00 ~ 12:00</td>
               <% for i in 1..5 %>
-                <td><%= check_box_tag "three#{i}", true %></td>
+                <td>
+                  <%= hidden_field_tag :"three#{i}", 0 %>
+                  <%= check_box_tag "three#{i}", 1 %>
+                </td>
               <% end %>
             </tr>
             <tr>
               <td>12:00 ~ 13:00</td>
               <% for i in 1..5 %>
-                <td><%= check_box_tag "four#{i}", true %></td>
+                <td>
+                  <%= hidden_field_tag :"four#{i}", 0 %>
+                  <%= check_box_tag "four#{i}", 1 %>
+                </td>
               <% end %>
             </tr>
             <tr>
               <td>13:00 ~ 14:00</td>
               <% for i in 1..5 %>
-                <td><%= check_box_tag "five#{i}", true %></td>
+                <td>
+                  <%= hidden_field_tag :"five#{i}", 0 %>
+                  <%= check_box_tag "five#{i}", 1 %>
+                </td>
               <% end %>
             </tr>
             <tr>
               <td>14:00 ~ 15:00</td>
               <% for i in 1..5 %>
-                <td><%= check_box_tag "six#{i}", true %></td>
+                <td>
+                  <%= hidden_field_tag :"six#{i}", 0 %>
+                  <%= check_box_tag "six#{i}", 1 %>
+                </td>
               <% end %>
             </tr>
             <tr>
               <td>15:00 ~ 16:00</td>
               <% for i in 1..5 %>
-                <td><%= check_box_tag "seven#{i}", true %></td>
+                <td>
+                  <%= hidden_field_tag :"seven#{i}", 0 %>
+                  <%= check_box_tag "seven#{i}", 1 %>
+                </td>
               <% end %>
             </tr>
             <tr>
               <td>16:00 ~ 17:00</td>
               <% for i in 1..5 %>
-                <td><%= check_box_tag "eight#{i}", true %></td>
+                <td>
+                  <%= hidden_field_tag :"eight#{i}", 0 %>
+                  <%= check_box_tag "eight#{i}", 1 %>
+                </td>
               <% end %>
             </tr>
             <tr>
               <td>17:00 ~ 18:00</td>
               <% for i in 1..5 %>
-                <td><%= check_box_tag "nine#{i}", true %></td>
+                <td>
+                  <%= hidden_field_tag :"nine#{i}", 0 %>
+                  <%= check_box_tag "nine#{i}", 1 %>
+                </td>
               <% end %>
             </tr>
             <tr>
               <td>18:00 ~ 19:00</td>
               <% for i in 1..5 %>
-                <td><%= check_box_tag "ten#{i}", true %></td>
+                <td>
+                  <%= hidden_field_tag :"ten#{i}", 0 %>
+                  <%= check_box_tag "ten#{i}", 1 %>
+                </td>
               <% end %>
             </tr>
             <tr>
               <td>19:00 ~ 20:00</td>
               <% for i in 1..5 %>
-                <td><%= check_box_tag "eleven#{i}", true %></td>
+                <td>
+                  <%= hidden_field_tag :"eleven#{i}", 0 %>
+                  <%= check_box_tag "eleven#{i}", 1 %>
+                </td>
               <% end %>
             </tr>
             <tr>
               <td>20:00 ~ 21:00</td>
               <% for i in 1..5 %>
-                <td><%= check_box_tag "twelve#{i}", true %></td>
+                <td>
+                  <%= hidden_field_tag :"twelve#{i}", 0 %>
+                  <%= check_box_tag "twelve#{i}", 1 %>
+                </td>
               <% end %>
             </tr>
             <tr>
               <td>21:00 ~ 22:00</td>
               <% for i in 1..5 %>
-                <td><%= check_box_tag "thirteen#{i}", true %></td>
+                <td>
+                  <%= hidden_field_tag :"thirteen#{i}", 0 %>
+                  <%= check_box_tag "thirteen#{i}", 1 %>
+                </td>
               <% end %>
             </tr>
           </tbody>
@@ -247,3 +288,4 @@
 </div>
 <!-- ./ 시간표 체크 테이블 -->
 
+<hr/>

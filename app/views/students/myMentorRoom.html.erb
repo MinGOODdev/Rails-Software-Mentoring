@@ -1,0 +1,263 @@
+<!-- 해당 멘토방 세부 정보 -->
+<h3><%= @roomMember.mentor_room.user.department.department_name %> <%= @roomMember.mentor_room.user.grade %>학년</h3>
+<h3><%= @roomMember.mentor_room.user.student_name %>의 멘토방</h3>
+<% if @roomMember.mentor_room.attachment != nil %>
+  <%= link_to "멘토 포트폴리오 다운로드", @roomMember.mentor_room.attachment, download: "#{@roomMember.mentor_room.user.student_name} 포트폴리오" %>
+<% else %>
+  <p style="color: gray;">포트폴리오 없음</p>
+  <% if current_user.authorization == '2' %>
+    <% if @roomAll.where(:user_id => current_user.id).empty? %>
+      <!-- 신청한 멘토방이 1개라도 있으면 중복 신청 불가능 -->
+      <form action="/students/applyMentee/<%= @roomMember.mentor_room.id %>" method="post">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <button class="btn btn-warning" type="submit">신청</button>
+      </form>
+    <% else %>
+      <!--
+      멘토방에 신청한 내역이 있다면 1개 밖에 없고,
+      신청 버튼이 없다면 이 멘토방에 신청한 것이기 때문에
+      취소 버튼 활성화
+      -->
+      <form action="/students/deleteApplyMentee/<%= current_user.id %>" method="post">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <button class="btn btn-warning" type="submit">신청 취소</button>
+      </form>
+    <% end %>
+  <% elsif current_user.authorization == '1' %>
+    <hr/>
+    <!-- TODO 형태를 이쁘게 바꾸고, 이미 제출한 내역이 있으면 제출했었다는 표시도 해주면 좋을 듯 -->
+    <!-- 중간 보고서 -->
+    <div>
+      <form action="/mentors/중간보고서제출" class="form-group" method="post" enctype="multipart/form-data">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <label for="attachment">중간 보고서</label>
+        <input class="form-control-file" type="file" id="attachment" name="attachment">
+
+        <div class="div-margin-top div-margin-bottom">
+          <button type="submit" class="btn btn-warning btn-sm">중간 보고서 제출</button>
+        </div>
+      </form>
+    </div>
+    <!-- 최종 보고서 -->
+    <div>
+      <form action="/mentors/최종보고서제출" class="form-group" method="post" enctype="multipart/form-data">
+        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+        <label for="attachment">최종 보고서</label>
+        <input class="form-control-file" type="file" id="attachment" name="attachment">
+
+        <div class="div-margin-top div-margin-bottom">
+          <button type="submit" class="btn btn-warning btn-sm">최종 보고서 제출</button>
+        </div>
+      </form>
+    </div>
+  <% end %>
+<% end %>
+
+<hr/>
+
+<div class="div-margin-bottom">
+  <div class="div-margin-top form-group" style="width: 20%;">
+    <label for="semester_id">해당 학기</label>
+    <input class="form-control" id="semester_id" name="semester_id" value="<%= @roomMember.mentor_room.semester.semester_name %>" disabled>
+  </div>
+
+  <div class="div-margin-top" style="width: 50%;">
+    <label for="team_name">팀 이름</label>
+    <input class="form-control" id="team_name" name="team_name" value="<%= @roomMember.mentor_room.team_name %>" disabled>
+  </div>
+
+  <div class="div-margin-top" style="width: 50%;">
+    <label for="subject">멘토링 주제</label>
+    <input class="form-control" id="subject" name="subject" value="<%= @roomMember.mentor_room.subject %>" disabled>
+  </div>
+
+  <div class="div-margin-top">
+    <label for="purpose">학습 목표</label>
+    <textarea class="form-control" id="purpose" name="purpose" rows="10" disabled><%= @roomMember.mentor_room.purpose %></textarea>
+  </div>
+
+  <div class="div-margin-top">
+    <label for="content">내용</label>
+    <textarea class="form-control" id="content" name="content" rows="10" disabled><%= @roomMember.mentor_room.content %></textarea>
+  </div>
+
+  <div class="div-margin-top">
+    <label for="method">학습 방법</label>
+    <textarea class="form-control" id="method" name="method" rows="10" disabled><%= @roomMember.mentor_room.method %></textarea>
+  </div>
+
+  <hr/>
+
+  <!-- 멘토방 구성 인원을 출력합니다. -->
+  <h5>멘토방 구성 인원</h5>
+  <div class="row">
+    <div class="col"></div>
+
+    <div class="col-6">
+      <div class="table-responsive text-center">
+        <table class="table">
+          <thead>
+          <tr>
+            <th>이름</th>
+            <th>권한</th>
+            <th>#</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @roomMembers.each do |r| %>
+            <tr>
+              <td><%= r.user.student_name %></td>
+              <td>
+                <% if r.user.authorization == '1' %>
+                  멘토
+                <% else %>
+                  멘티
+                <% end %>
+              </td>
+              <td>
+                <!-- 해당 멘토방의 멘토인 경우에만 멘티를 삭제할 수 있습니다. -->
+                <% if current_user.id == @roomMember.mentor_room.user_id && r.user.authorization == '2' %>
+                  <form action="/mentors/deleteMyMentee/<%= r.user.id %>" method="post">
+                    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                    <button class="btn btn-light btn-sm" type="submit">삭제</button>
+                  </form>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col"></div>
+  </div>
+
+  <hr/>
+
+  <h3>모두가 가능한 시간</h3>
+
+  <div class="table-responsive text-center">
+    <table class="table table-bordered">
+      <thead>
+      <tr>
+        <th>시간/요일</th>
+        <th>월</th>
+        <th>화</th>
+        <th>수</th>
+        <th>목</th>
+        <th>금</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>09:00 ~ 10:00</td>
+        <td <% if @mon_am_nine_to_ten == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @tues_am_nine_to_ten == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @wednes_am_nine_to_ten == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @thurs_am_nine_to_ten == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @fri_am_nine_to_ten == 1 %> style="background-color: #ffc107;" <% end %>></td>
+      </tr>
+      <tr>
+        <td>10:00 ~ 11:00</td>
+        <td <% if @mon_am_ten_to_eleven == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @tues_am_ten_to_eleven == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @wednes_am_ten_to_eleven == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @thurs_am_ten_to_eleven == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @fri_am_ten_to_eleven == 1 %> style="background-color: #ffc107;" <% end %>></td>
+      </tr>
+      <tr>
+        <td>11:00 ~ 12:00</td>
+        <td <% if @mon_am_eleven_to_twelve == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @tues_am_eleven_to_twelve == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @wednes_am_eleven_to_twelve == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @thurs_am_eleven_to_twelve == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @fri_am_eleven_to_twelve == 1 %> style="background-color: #ffc107;" <% end %>></td>
+      </tr>
+      <tr>
+        <td>12:00 ~ 13:00</td>
+        <td <% if @mon_pm_twelve_to_one == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @tues_pm_twelve_to_one == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @wednes_pm_twelve_to_one == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @thurs_pm_twelve_to_one == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @fri_pm_twelve_to_one == 1 %> style="background-color: #ffc107;" <% end %>></td>
+      </tr>
+      <tr>
+        <td>13:00 ~ 14:00</td>
+        <td <% if @mon_pm_one_to_two == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @tues_pm_one_to_two == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @wednes_pm_one_to_two == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @thurs_pm_one_to_two == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @fri_pm_one_to_two == 1 %> style="background-color: #ffc107;" <% end %>></td>
+      </tr>
+      <tr>
+        <td>14:00 ~ 15:00</td>
+        <td <% if @mon_pm_two_to_three == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @tues_pm_two_to_three == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @wednes_pm_two_to_three == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @thurs_pm_two_to_three == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @fri_pm_two_to_three == 1 %> style="background-color: #ffc107;" <% end %>></td>
+      </tr>
+      <tr>
+        <td>15:00 ~ 16:00</td>
+        <td <% if @mon_pm_three_to_four == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @tues_pm_three_to_four == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @wednes_pm_three_to_four == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @thurs_pm_three_to_four == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @fri_pm_three_to_four == 1 %> style="background-color: #ffc107;" <% end %>></td>
+      </tr>
+      <tr>
+        <td>16:00 ~ 17:00</td>
+        <td <% if @mon_pm_four_to_five == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @tues_pm_four_to_five == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @wednes_pm_four_to_five == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @thurs_pm_four_to_five == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @fri_pm_four_to_five == 1 %> style="background-color: #ffc107;" <% end %>></td>
+      </tr>
+      <tr>
+        <td>17:00 ~ 18:00</td>
+        <td <% if @mon_pm_five_to_six == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @tues_pm_five_to_six == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @wednes_pm_five_to_six == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @thurs_pm_five_to_six == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @fri_pm_five_to_six == 1 %> style="background-color: #ffc107;" <% end %>></td>
+      </tr>
+      <tr>
+        <td>18:00 ~ 19:00</td>
+        <td <% if @mon_pm_six_to_seven == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @tues_pm_six_to_seven == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @wednes_pm_six_to_seven == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @thurs_pm_six_to_seven == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @fri_pm_six_to_seven == 1 %> style="background-color: #ffc107;" <% end %>></td>
+      </tr>
+      <tr>
+        <td>19:00 ~ 20:00</td>
+        <td <% if @mon_pm_seven_to_eight == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @tues_pm_seven_to_eight == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @wednes_pm_seven_to_eight == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @thurs_pm_seven_to_eight == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @fri_pm_seven_to_eight == 1 %> style="background-color: #ffc107;" <% end %>></td>
+      </tr>
+      <tr>
+        <td>20:00 ~ 21:00</td>
+        <td <% if @mon_pm_eight_to_nine == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @tues_pm_eight_to_nine == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @wednes_pm_eight_to_nine == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @thurs_pm_eight_to_nine == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @fri_pm_eight_to_nine == 1 %> style="background-color: #ffc107;" <% end %>></td>
+      </tr>
+      <tr>
+        <td>21:00 ~ 22:00</td>
+        <td <% if @mon_pm_nine_to_ten == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @tues_pm_nine_to_ten == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @wednes_pm_nine_to_ten == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @thurs_pm_nine_to_ten == 1 %> style="background-color: #ffc107;" <% end %>></td>
+        <td <% if @fri_pm_nine_to_ten == 1 %> style="background-color: #ffc107;" <% end %>></td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <hr/>
+
+</div>
