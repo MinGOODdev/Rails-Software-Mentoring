@@ -45,6 +45,13 @@ class StudentsController < ApplicationController
 
     @apply.save
   end
+
+  # 멘토 신청 취소
+  def applyMentorDelete
+    apply = MentorApply.find_by(:user_id => current_user.id)
+    apply.destroy
+    redirect_to '/home/index'
+  end
   
   # 멘토방 목록 조회
   def findAllRooms
