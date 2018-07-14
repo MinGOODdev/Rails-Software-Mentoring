@@ -6,10 +6,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+User.create(email: 'admin', password: '111111',
+            student_name: '관리자', grade: '4', phone_number: '010-0000-0000',
+            mail: 'admin@admin', bank_name: '국민', bank_account: '45700101290300',
+            department_id: 10, authorization: 0)
+
 User.create(email: '201132034', password: '111111',
             student_name: '조민국', grade: '4', phone_number: '010-0000-0000',
             mail: '1@1', bank_name: '국민', bank_account: '45700101290300',
-            department_id: 11, authorization: 0)
+            department_id: 11, authorization: 2)
             
 User.create(email: '201132001', password: '111111',
             student_name: '프로도', grade: '4', phone_number: '010-0000-0000',
@@ -19,7 +24,7 @@ User.create(email: '201132001', password: '111111',
 User.create(email: '201132002', password: '111111',
             student_name: '나얼', grade: '4', phone_number: '010-0000-0000',
             mail: 'BES@bes', bank_name: 'bes', bank_account: '45700101290300',
-            department_id: 10, authorization: 2)
+            department_id: 13, authorization: 2)
             
 Department.create(id: 10, department_name: 'IT학부')
 Department.create(id: 11, department_name: '소프트웨어공학과')

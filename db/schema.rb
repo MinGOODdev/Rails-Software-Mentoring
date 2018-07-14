@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180713165040) do
+ActiveRecord::Schema.define(version: 20180714113727) do
+
+  create_table "admin_options", force: :cascade do |t|
+    t.integer  "mentor_apply_active", default: 0
+    t.integer  "mentee_apply_active", default: 0
+    t.integer  "room_member_max_num"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
+  end
 
   create_table "departments", force: :cascade do |t|
     t.string   "department_name"
@@ -174,16 +182,16 @@ ActiveRecord::Schema.define(version: 20180713165040) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "email",                  default: "",  null: false
-    t.string   "encrypted_password",     default: "",  null: false
+    t.string   "email",                                null: false
+    t.string   "encrypted_password",                   null: false
     t.string   "student_name",                         null: false
     t.string   "grade",                                null: false
     t.string   "phone_number",                         null: false
     t.string   "mail",                                 null: false
-    t.integer  "department_id",          default: 1,   null: false
-    t.string   "bank_name",                            null: false
-    t.string   "bank_account",                         null: false
-    t.string   "authorization",          default: "2", null: false
+    t.integer  "department_id",                        null: false
+    t.string   "bank_name"
+    t.string   "bank_account"
+    t.string   "authorization",          default: "2"
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
