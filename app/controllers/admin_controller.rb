@@ -29,14 +29,6 @@ class AdminController < ApplicationController
 
   # AdminOption 관리
   def adminOptionGet
-    size = AdminOption.all.size
-    if size == 0
-      adminOption = AdminOption.new
-      adminOption.mentor_apply_active = 0
-      adminOption.mentee_apply_active = 0
-      adminOption.room_member_max_num = 6
-      adminOption.save
-    end
     @adminOption = AdminOption.first
   end
 
