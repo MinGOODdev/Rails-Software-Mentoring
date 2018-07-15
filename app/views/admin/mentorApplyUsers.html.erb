@@ -1,62 +1,62 @@
 <h3>멘토 신청자 현황</h3>
 <div class="table-reponsive">
-  <table class="table table-hover table-bordered">
-    <thead class="thead-light">
-      <tr>
-        <th>#</th>
-        <th>학번</th>
-        <th>이름</th>
-        <th>소속</th>
-        <th>학년</th>
-        <th>전화번호</th>
-        <th>이메일</th>
-        <th>은행/계좌</th>
-        <th>권한</th>
-        <th>#</th>
-      </tr>
-    </thead>
-    <tbody>
-      <form action="/admin/mentorApplyConfirm" method="post">
-        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-        <% @mentorApplies.each do |m| %>
-          <!-- 권한이 멘티인 학생 중 멘토 신청을 한 사람만 출력 -->
-          <% if m.user.authorization == '2' %>
-          <tr>
-            <td><%= check_box_tag "users[]", m.user.id %></td>
-            <td><%= m.user.email %></td>
-            <td>
-              <!-- 해당 멘토 세부 정보 조회 -->
-              <a href="/admin/mentorApplyFindOne/<%= m.id %>" style="color: #ffc107;">
-                <%= m.user.student_name %>
-              </a>
-            </td>
-            <td><%= m.user.department.department_name %></td>
-            <td><%= m.user.grade %></td>
-            <td><%= m.user.phone_number %></td>
-            <td><%= m.user.mail %></td>
-            <td>
-              <%= m.user.bank_name %> /<br/>
-              <%= m.user.bank_account %></td>
-            <td>
-              <% if m.user.authorization == '0' %>
-                관리자
-              <% elsif m.user.authorization == '1' %>
-                멘토
-              <% else %>
-                멘티
-              <% end %>
-            </td>
-            <td>
-              <!-- 해당 멘토 신청 내역 삭제 -->
-              <a href="/admin/deleteMentorApply/<%= m.id %>" class="btn btn-danger btn-sm">삭제</a>
-            </td>
-          </tr>
+  <form action="/admin/mentorApplyConfirm" method="post">
+    <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <table class="table table-hover table-bordered">
+      <thead class="thead-light">
+        <tr>
+          <th>#</th>
+          <th>학번</th>
+          <th>이름</th>
+          <th>소속</th>
+          <th>학년</th>
+          <th>전화번호</th>
+          <th>이메일</th>
+          <th>은행/계좌</th>
+          <th>권한</th>
+          <th>#</th>
+        </tr>
+      </thead>
+      <tbody>
+          <% @mentorApplies.each do |m| %>
+            <!-- 권한이 멘티인 학생 중 멘토 신청을 한 사람만 출력 -->
+            <% if m.user.authorization == '2' %>
+            <tr>
+              <td><%= check_box_tag "users[]", m.user.id %></td>
+              <td><%= m.user.email %></td>
+              <td>
+                <!-- 해당 멘토 세부 정보 조회 -->
+                <a href="/admin/mentorApplyFindOne/<%= m.id %>" style="color: #ffc107;">
+                  <%= m.user.student_name %>
+                </a>
+              </td>
+              <td><%= m.user.department.department_name %></td>
+              <td><%= m.user.grade %></td>
+              <td><%= m.user.phone_number %></td>
+              <td><%= m.user.mail %></td>
+              <td>
+                <%= m.user.bank_name %> /<br/>
+                <%= m.user.bank_account %></td>
+              <td>
+                <% if m.user.authorization == '0' %>
+                  관리자
+                <% elsif m.user.authorization == '1' %>
+                  멘토
+                <% else %>
+                  멘티
+                <% end %>
+              </td>
+              <td>
+                <!-- 해당 멘토 신청 내역 삭제 -->
+                <a href="/admin/deleteMentorApply/<%= m.id %>" class="btn btn-danger btn-sm">삭제</a>
+              </td>
+            </tr>
+            <% end %>
           <% end %>
-        <% end %>
-        <div class="div-margin-bottom float-right">
-          <button type="submit" class="btn btn-warning">승인</button>
-        </div>
-      </form>
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+    <div class="div-margin-bottom float-right">
+      <button type="submit" class="btn btn-success">멘토 승인 및 멘토방 개설</button>
+    </div>
+  </form>
 </div>

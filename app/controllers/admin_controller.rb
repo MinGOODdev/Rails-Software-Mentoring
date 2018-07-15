@@ -13,14 +13,16 @@ class AdminController < ApplicationController
     # thursdays = Thursday.all
     # fridays = Friday.all
 
-    MentorApply.destroy_all
-    MentorRoom.destroy_all
-    RoomMember.destroy_all
-    Monday.destroy_all
-    Tuesday.destroy_all
-    Wednesday.destroy_all
-    Thursday.destroy_all
-    Friday.destroy_all
+    # MentorApply.destroy_all
+    # MentorRoom.destroy_all
+    # RoomMember.destroy_all
+    # Monday.destroy_all
+    # Tuesday.destroy_all
+    # Wednesday.destroy_all
+    # Thursday.destroy_all
+    # Friday.destroy_all
+
+    # 테이블 세부 관계 설정하면 조금 더 간략해질 것 같다.
 
     redirect_to 'home/index'
   end

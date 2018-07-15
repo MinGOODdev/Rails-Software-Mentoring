@@ -11,14 +11,14 @@
                           :mentor_room_id => @roomMember.mentor_room.id) != nil %>
     <hr/>
     <div class="alert alert-success" role="alert">
-      이미 업로드된 중간 보고서가 존재합니다. 다시 제출하시면 가장 최근 업로드된 파일로 갱신됩니다.
+      중간 보고서 업로드 OK. 다시 제출하시면 가장 최근 업로드된 파일로 갱신됩니다.
     </div>
   <% end %>
   <% if FinalReport.find_by(:user_id => current_user.id,
                             :semester_id => @roomMember.mentor_room.semester.id,
                             :mentor_room_id => @roomMember.mentor_room.id) != nil %>
     <div class="alert alert-success" role="alert">
-      이미 업로드된 최종 보고서가 존재합니다. 다시 제출하시면 가장 최근 업로드된 파일로 갱신됩니다.
+      최종 보고서 업로드 OK. 다시 제출하시면 가장 최근 업로드된 파일로 갱신됩니다.
     </div>
   <% end %>
 <% else %>
@@ -28,14 +28,14 @@
                           :mentor_room_id => @roomMember.mentor_room.id) != nil %>
     <hr/>
     <div class="alert alert-success" role="alert">
-      이미 업로드된 중간 보고서가 존재합니다.
+      중간 보고서 업로드 OK. 다시 제출하시면 가장 최근 업로드된 파일로 갱신됩니다.
     </div>
   <% end %>
   <% if FinalReport.find_by(:user_id => current_user.id,
                             :semester_id => @roomMember.mentor_room.semester.id,
                             :mentor_room_id => @roomMember.mentor_room.id) != nil %>
     <div class="alert alert-success" role="alert">
-      이미 업로드된 최종 보고서가 존재합니다.
+      최종 보고서 업로드 OK. 다시 제출하시면 가장 최근 업로드된 파일로 갱신됩니다.
     </div>
   <% end %>
 <% end %>
