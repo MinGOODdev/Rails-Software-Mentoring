@@ -1,7 +1,4 @@
 # Software Mentoring System
-![DB_Table_Ver.1](docs/db_table.png)
-
----
 
 ## API arrangement
 ### Common
@@ -46,6 +43,9 @@
     * /admin/semesterCreate
     * /admin/semesterUpdate
     * /admin/semesterDelete
+* 멘토 신청 활성화/비활성화 (/admin/mentorOption)
+* 멘티 신청 활성화/비활성화 (/admin/menteeOption)
+* 멘토방 인원 설정 (/admin/roomOption)
 
 ---
 
@@ -122,9 +122,9 @@
     * 사용자 엑셀 업로드
 * 학기 등록 (완료)
 * 학기 활성/비활성 (완료)
-* 보고서 목록 조회
-    * file download
-* 메뉴 활성/비활성 및 멘토방 최대 인원 설정
+* 보고서 목록 조회 (완료)
+    * file download (완료)
+* 메뉴 활성/비활성 및 멘토방 최대 인원 설정 (완료)
 
 ---
 

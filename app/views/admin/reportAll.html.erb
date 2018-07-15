@@ -1,0 +1,65 @@
+<div class="float-left" style="padding-right: 10px;">
+  <h3>중간 보고서 목록</h3>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-hover table-bordered">
+    <thead class="thead-light">
+    <tr>
+      <th>학기</th>
+      <th>멘토</th>
+      <th>학년</th>
+      <th>학과</th>
+      <th>다운로드</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @midReports.each do |m| %>
+      <tr>
+        <td><%= m.semester.semester_name %></td>
+        <td><%= m.user.student_name %></td>
+        <td><%= m.user.grade %></td>
+        <td><%= m.user.department.department_name %></td>
+        <td>
+          <%= link_to "▼", m.attachment, download: "#{m.user.student_name} 중간 보고서",
+                      class: "btn btn-primary btn-sm"%>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
+
+<hr/>
+
+<div class="float-left" style="padding-right: 10px;">
+  <h3>최종 보고서 목록</h3>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-hover table-bordered">
+    <thead class="thead-light">
+    <tr>
+      <th>학기</th>
+      <th>멘토</th>
+      <th>학년</th>
+      <th>학과</th>
+      <th>다운로드</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% @finalReports.each do |m| %>
+      <tr>
+        <td><%= m.semester.semester_name %></td>
+        <td><%= m.user.student_name %></td>
+        <td><%= m.user.grade %></td>
+        <td><%= m.user.department.department_name %></td>
+        <td>
+          <%= link_to "▼", m.attachment, download: "#{m.user.student_name} 최종 보고서",
+                      class: "btn btn-primary btn-sm"%>
+        </td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

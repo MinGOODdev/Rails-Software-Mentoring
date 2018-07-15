@@ -1,8 +1,29 @@
 class AdminController < ApplicationController
 
-  # TODO
+  # TODO Feature: Admin
   # 멘토링 기간이 종료되면 제출된 보고서는 보존하고,
   # MentorApply, MentorRoom, RoomMember, 요일별 테이블을 모두 비운다.
+  def mentoringEnd
+    # mentorApplies = MentorApply.all
+    # mentorRooms = MentorRoom.all
+    # roomMembers = RoomMember.all
+    # mondays = Monday.all
+    # tuesdays = Tuesday.all
+    # wednesdays = Wednesday.all
+    # thursdays = Thursday.all
+    # fridays = Friday.all
+
+    MentorApply.destroy_all
+    MentorRoom.destroy_all
+    RoomMember.destroy_all
+    Monday.destroy_all
+    Tuesday.destroy_all
+    Wednesday.destroy_all
+    Thursday.destroy_all
+    Friday.destroy_all
+
+    redirect_to 'home/index'
+  end
 
   # AdminOption 관리
   def adminOptionGet
@@ -179,6 +200,12 @@ class AdminController < ApplicationController
     semester = Semester.find(params[:semester_id])
     semester.destroy
     redirect_to '/admin/semesterGet'
+  end
+
+  # 전체 보고서 조회
+  def reportAll
+    @midReports = MidReport.all
+    @finalReports = FinalReport.all
   end
 
   private

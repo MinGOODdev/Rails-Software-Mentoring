@@ -82,4 +82,6 @@ Rails.application.routes.draw do
   get 'admin/menteeOption'
   post 'admin/roomOption'
 
+  ## 보고서 관리
+  get 'admin/reportAll'
 end
