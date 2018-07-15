@@ -89,7 +89,7 @@
   </div>
 
   <hr/>
-  <% if current_user.authorization == '2' %>
+  <% if current_user.authorization == '2' && AdminOption.first.mentee_apply_active == 1 %>
     <% if @roomAll.where(:user_id => current_user.id).empty? %>
       <!-- 신청한 멘토방이 1개라도 있으면 중복 신청 불가능 -->
       <form action="/students/applyMentee/<%= @selectedRoom.id %>" method="post">

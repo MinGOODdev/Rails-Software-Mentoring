@@ -3,6 +3,53 @@ class AdminController < ApplicationController
   # TODO
   # 멘토링 기간이 종료되면 제출된 보고서는 보존하고,
   # MentorApply, MentorRoom, RoomMember, 요일별 테이블을 모두 비운다.
+
+  # AdminOption 관리
+  def adminOptionGet
+    size = AdminOption.all.size
+    if size == 0
+      adminOption = AdminOption.new
+      adminOption.mentor_apply_active = 0
+      adminOption.mentee_apply_active = 0
+      adminOption.room_member_max_num = 6
+      adminOption.save
+    end
+    @adminOption = AdminOption.first
+  end
+
+  # 멘토 신청 버튼 활성화/비활성화
+  def mentorOption
+    adminOption = AdminOption.first
+    if adminOption.mentor_apply_active == 1
+      adminOption.mentor_apply_active = 0
+      adminOption.save
+    elsif adminOption.mentor_apply_active == 0
+      adminOption.mentor_apply_active = 1
+      adminOption.save
+    end
+    redirect_to '/admin/adminOptionGet'
+  end
+  
+  # 멘티 신청 활성화/비활성화
+  def menteeOption
+    adminOption = AdminOption.first
+    if adminOption.mentee_apply_active == 1
+      adminOption.mentee_apply_active = 0
+      adminOption.save
+    elsif adminOption.mentee_apply_active == 0
+      adminOption.mentee_apply_active = 1
+      adminOption.save
+    end
+    redirect_to '/admin/adminOptionGet'
+  end
+
+  # 멘토방 인원 설정
+  def roomOption
+    adminOption = AdminOption.first
+    adminOption.room_member_max_num = params[:room_member_max_num]
+    adminOption.save
+    redirect_to '/admin/adminOptionGet'
+  end
   
   # 전체 유저 목록 조회
   def findAllUsers

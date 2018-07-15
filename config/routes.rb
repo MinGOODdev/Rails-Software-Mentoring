@@ -76,4 +76,10 @@ Rails.application.routes.draw do
   post 'admin/semesterUpdate'
   post 'admin/semesterDelete'
 
+  ## AdminOption 관리
+  get 'admin/adminOptionGet'
+  get 'admin/mentorOption'
+  get 'admin/menteeOption'
+  post 'admin/roomOption'
+
 end
