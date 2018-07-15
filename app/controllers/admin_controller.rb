@@ -68,12 +68,12 @@ class AdminController < ApplicationController
   
   # 전체 유저 목록 조회
   def findAllUsers
-    @users = User.all
+    @users = User.all.page params[:page]
   end
   
   # 멘토 신청자 목록 조회
   def mentorApplyUsers
-    @mentorApplies = MentorApply.all
+    @mentorApplies = MentorApply.all.page params[:page]
   end
   
   # 멘토 신청자 세부 정보 조회
@@ -164,7 +164,7 @@ class AdminController < ApplicationController
 
   # 학기 관리 (Get)
   def semesterGet
-    @semesters = Semester.all.reverse
+    @semesters = Semester.order("created_at DESC").page params[:page]
   end
 
   # 학기 등록 (Post)

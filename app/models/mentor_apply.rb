@@ -1,4 +1,5 @@
 class MentorApply < ApplicationRecord
-    belongs_to :semester
-    belongs_to :user
+  paginates_per 10
+  belongs_to :semester
+  belongs_to :user
 end

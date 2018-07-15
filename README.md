@@ -1,4 +1,6 @@
 # Software Mentoring System
+### For 11 Days.
+---
 
 ## API arrangement
 ### Common
@@ -46,6 +48,8 @@
 * 멘토 신청 활성화/비활성화 (/admin/mentorOption)
 * 멘티 신청 활성화/비활성화 (/admin/menteeOption)
 * 멘토방 인원 설정 (/admin/roomOption)
+* 보고서 R (/admin/reportAll)
+* 회원 엑셀 업로드 (/admin/import)
 
 ---
 
@@ -106,11 +110,11 @@
     * 정렬 (완료)
     * 검색 (완료)
 * 전체 사용자 조회 (완료)
-    * pagination
+    * pagination (완료)
     * 정렬
     * 검색   
 * 멘토 신청자 조회 (완료)
-    * pagination
+    * pagination (완료)
 * 멘토 신청자 세부 정보 조회 (완료)
 * 멘토 신청자 신청 내역 삭제 (완료)
 * 멘토 권한 승인 (완료)
@@ -119,7 +123,8 @@
 * 사용자 관리
     * 회원 권한 변경 (완료)
     * 사용자 삭제 (완료)
-    * 사용자 엑셀 업로드
+    * 사용자 엑셀 import (완료)
+    * 사용자 엑셀 export
 * 학기 등록 (완료)
 * 학기 활성/비활성 (완료)
 * 보고서 목록 조회 (완료)

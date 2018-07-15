@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 20180714113727) do
   create_table "admin_options", force: :cascade do |t|
     t.integer  "mentor_apply_active", default: 0
     t.integer  "mentee_apply_active", default: 0
-    t.integer  "room_member_max_num"
+    t.integer  "room_member_max_num", default: 6
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
   end
@@ -56,12 +56,12 @@ ActiveRecord::Schema.define(version: 20180714113727) do
 
   create_table "mentor_applies", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "semester_id"
     t.string   "team_name",                null: false
     t.string   "subject",                  null: false
     t.string   "purpose",                  null: false
     t.string   "content",                  null: false
     t.string   "method",                   null: false
-    t.integer  "semester_id"
     t.string   "attachment",  default: ""
     t.datetime "created_at",               null: false
     t.datetime "updated_at",               null: false
@@ -69,12 +69,12 @@ ActiveRecord::Schema.define(version: 20180714113727) do
 
   create_table "mentor_rooms", force: :cascade do |t|
     t.integer  "user_id"
+    t.integer  "semester_id"
     t.string   "team_name",                       null: false
     t.string   "subject",                         null: false
     t.string   "purpose",                         null: false
     t.string   "content",                         null: false
     t.string   "method",                          null: false
-    t.integer  "semester_id"
     t.string   "attachment",      default: ""
     t.boolean  "mid_report_ok",   default: false
     t.boolean  "final_report_ok", default: false
@@ -112,8 +112,8 @@ ActiveRecord::Schema.define(version: 20180714113727) do
 
   create_table "notices", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "title"
-    t.string   "content"
+    t.string   "title",                   null: false
+    t.string   "content",    default: "", null: false
     t.string   "attachment", default: ""
     t.integer  "hit",        default: 0,  null: false
     t.datetime "created_at",              null: false
@@ -122,11 +122,11 @@ ActiveRecord::Schema.define(version: 20180714113727) do
 
   create_table "questions", force: :cascade do |t|
     t.integer  "user_id"
-    t.string   "title"
-    t.string   "content"
-    t.integer  "hit",        default: 0, null: false
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.string   "title",                   null: false
+    t.string   "content",    default: "", null: false
+    t.integer  "hit",        default: 0,  null: false
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "room_members", force: :cascade do |t|
