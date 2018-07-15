@@ -56,6 +56,14 @@
           <button class="btn btn-info btn-sm" type="submit">권한 변경</button>
         </div>
       </form>
+
+      <form action="/admin/import" method="post" enctype="multipart/form-data">
+        <div class="form-group form-inline">
+          <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+          <input style="width: 200px;" class="form-control-file" type="file" id="file" name="file">
+          <button type="submit" class="btn btn-warning btn-sm">엑셀 업로드</button>
+        </div>
+      </form>
     </tbody>
   </table>
 </div>

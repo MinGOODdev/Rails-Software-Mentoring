@@ -10,6 +10,8 @@ gem 'bootstrap-sass', '~> 3.3.7'
 # gem 'bootstrap_form'
 gem 'tinymce-rails'
 
+gem 'roo'
+
 gem 'tzinfo-data'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'

@@ -84,4 +84,7 @@ Rails.application.routes.draw do
 
   ## 보고서 관리
   get 'admin/reportAll'
+
+  ## 사용자 csv, xls, xlsx 업로드
+  post 'admin/import'
 end

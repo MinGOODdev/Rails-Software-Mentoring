@@ -210,6 +210,12 @@ class AdminController < ApplicationController
     @finalReports = FinalReport.all
   end
 
+  ## 사용자 csv, xls, xlsx 업로드
+  def import
+    count = User.import(params[:file])
+    redirect_to '/admin/findAllUsers', notice: "#{count}!"
+  end
+
   private
   def initialize_mentor_time_table(day, mentorApply)
     day.user_id = mentorApply.user.id
