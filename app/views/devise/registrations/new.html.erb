@@ -4,7 +4,8 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :email, required: true, autofocus: true, label: false, placeholder: '학번을 입력하세요.' %>
+    <input type="text", autofocus="true", id="user_email", name="user[email]", placeholder="학번을 입력하세요.">
+    <%#= f.input :email, required: true, autofocus: true, label: false, placeholder: '학번을 입력하세요.' %>
     <%= f.input :password, required: true, label: false, placeholder: 'PW를 입력하세요.', hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length) %>
     <%= f.input :password_confirmation, required: true, label: false, placeholder: '다시 한번 PW를 입력하세요.' %>
     
