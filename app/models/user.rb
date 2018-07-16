@@ -15,9 +15,15 @@ class User < ApplicationRecord
     header = spreadsheet.row(1)
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
-      user = User.find_by(id: row["id"]) || User.new
-      user.attributes = row.to_hash
-      user.save!
+
+      user = User.where(email: row[:email]).first_or_initialize
+      # user = User.find_by(id: row["id"]) || User.new
+
+      user.update row.to_hash
+      # user.attributes = row.to_hash
+      # user.assign_attributes(row.to_hash)
+
+      user.save
     end
   end
 

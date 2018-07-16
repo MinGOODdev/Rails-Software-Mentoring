@@ -74,6 +74,7 @@ class AdminController < ApplicationController
     ## export
     respond_to do |format|
       format.html
+      format.xlsx
       format.csv { send_data @userAll.to_csv }
       format.xls
     end

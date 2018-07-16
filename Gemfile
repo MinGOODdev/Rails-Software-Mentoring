@@ -6,11 +6,15 @@ gem 'carrierwave', '~> 1.0'
 
 gem 'kaminari'
 
-gem 'bootstrap-sass', '~> 3.3.7'
 # gem 'bootstrap_form'
+gem 'bootstrap-sass', '~> 3.3.7'
 gem 'tinymce-rails'
 
 gem 'roo'
+gem 'axlsx'
+gem 'axlsx_rails'
+# gem 'rubyzip'
+# gem 'acts_as_xlsx'
 
 gem 'tzinfo-data'
 
