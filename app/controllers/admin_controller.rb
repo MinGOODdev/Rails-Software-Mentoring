@@ -69,6 +69,14 @@ class AdminController < ApplicationController
   # 전체 유저 목록 조회
   def findAllUsers
     @users = User.all.page params[:page]
+    @userAll = User.all
+
+    ## export
+    respond_to do |format|
+      format.html
+      format.csv { send_data @userAll.to_csv }
+      format.xls
+    end
   end
   
   # 멘토 신청자 목록 조회
@@ -204,9 +212,11 @@ class AdminController < ApplicationController
 
   ## 사용자 csv, xls, xlsx 업로드
   def import
-    count = User.import(params[:file])
-    redirect_to '/admin/findAllUsers', notice: "#{count}!"
+    User.import(params[:file])
+    redirect_to '/admin/findAllUsers'
   end
+
+  ## TODO 비밀번호에 폰번호 + 문자열 들어가게 할 수 있겠지 ?
 
   private
   def initialize_mentor_time_table(day, mentorApply)

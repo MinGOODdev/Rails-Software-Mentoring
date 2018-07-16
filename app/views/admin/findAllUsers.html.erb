@@ -57,6 +57,7 @@
         </div>
       </form>
 
+      <!-- 엑셀 업로드 -->
       <form action="/admin/import" method="post" enctype="multipart/form-data">
         <div class="form-group form-inline">
           <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
@@ -64,8 +65,13 @@
           <button type="submit" class="btn btn-warning btn-sm">엑셀 업로드</button>
         </div>
       </form>
+      <!-- ./ 엑셀 업로드 -->
+
+      <!-- 엑셀 Export Ver.1 -->
+      <%= link_to "Export User List XLS", admin_findAllUsers_path(format: "xls") %><br/>
+      <!-- ./ 엑셀 Export Ver.1 -->
+
     </tbody>
   </table>
-
   <%= paginate @users %>
 </div>
