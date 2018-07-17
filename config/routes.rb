@@ -87,4 +87,8 @@ Rails.application.routes.draw do
 
   ## 사용자 csv, xls, xlsx 업로드
   post 'admin/import'
+
+  # 멘토링 기간이 종료되면 제출된 보고서는 보존하고,
+  # MentorApply, MentorRoom, RoomMember, 요일별 테이블을 모두 비운다.
+  get 'admin/mentoringEnd'
 end

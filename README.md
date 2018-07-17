@@ -1,5 +1,13 @@
 # Software Mentoring System
-### For 11 Days.
+## TODO
+* 파일 업로드할 때 선택된 파일 없으면 버튼 안 보이게 하기
+* 예외 처리 하기
+* 다운로드 되는 보고서에 학기도 포함하기
+* 체크박스 전체선택 기능 추가하기
+* 시간 설정해서 그 시간에 멘토 신청, 멘티 신청 활성화 비활성화 되게 하기
+* MentorRoom Table reportOk column이 필요없나? 이건 일단 있어도 문제는 없으니 나중에 생각해보기
+* 멘티 신청 선착순 처리
+
 ---
 
 ## API arrangement
