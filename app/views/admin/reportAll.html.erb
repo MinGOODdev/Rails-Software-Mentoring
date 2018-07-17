@@ -21,7 +21,7 @@
         <td><%= m.user.grade %></td>
         <td><%= m.user.department.department_name %></td>
         <td>
-          <%= link_to "▼", m.attachment, download: "#{m.user.student_name} 중간 보고서",
+          <%= link_to "▼", m.attachment, download: "#{m.semester.semester_name}_#{m.user.student_name} 중간 보고서",
                       class: "btn btn-primary btn-sm"%>
         </td>
       </tr>
