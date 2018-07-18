@@ -11,6 +11,12 @@ class MentorsController < ApplicationController
   def midReportUpdate
     mentorRoom = MentorRoom.find_by(:user_id => current_user.id)
 
+    ## 보고서를 업로드하지 않고 버튼을 누를 경우
+    if params[:attachment] == nil
+      flash[:danger] = '업로드할 파일을 선택해주세요.'
+      redirect_to '/students/myMentorRoom' and return
+    end
+
     if MidReport.find_by(:user_id => current_user.id,
                          :semester_id => mentorRoom.semester_id,
                          :mentor_room_id => mentorRoom.id) == nil
@@ -44,6 +50,12 @@ class MentorsController < ApplicationController
   # 최종 보고서 제출
   def finalReportUpdate
     mentorRoom = MentorRoom.find_by(:user_id => current_user.id)
+
+    ## 보고서를 업로드하지 않고 버튼을 누를 경우
+    if params[:attachment] == nil
+      flash[:danger] = '업로드할 파일을 선택해주세요.'
+      redirect_to '/students/myMentorRoom' and return
+    end
 
     if FinalReport.find_by(:user_id => current_user.id,
                            :semester_id => mentorRoom.semester_id,

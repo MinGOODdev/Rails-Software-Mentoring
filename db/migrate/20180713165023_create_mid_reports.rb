@@ -5,7 +5,7 @@ class CreateMidReports < ActiveRecord::Migration[5.0]
       t.integer :user_id
       t.integer :semester_id
       t.integer :mentor_room_id
-      t.string :attachment
+      t.string :attachment, null: false
 
       t.timestamps null: false
     end

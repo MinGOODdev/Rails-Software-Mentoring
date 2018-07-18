@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20180714113727) do
     t.integer  "user_id"
     t.integer  "semester_id"
     t.integer  "mentor_room_id"
-    t.string   "attachment"
+    t.string   "attachment",     null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(version: 20180714113727) do
     t.integer  "user_id"
     t.integer  "semester_id"
     t.integer  "mentor_room_id"
-    t.string   "attachment"
+    t.string   "attachment",     null: false
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false
   end
