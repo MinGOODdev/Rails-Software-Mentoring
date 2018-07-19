@@ -26,46 +26,42 @@
 회원 정보 수정 | /users/edit
 
 ### General User (authorization == '2')
-* 공지 R
-    * /notices/index
-    * /notices/show/:notice_id
-* 멘토 신청 C (/students/applyMentorGet & /students/applyMentorPost)
-* 멘토 신청 U (/students/applyMentorEdit & /students/applyMentorUpdate)
-* 멘토 신청 D (/students/applyMentorDelete)
-* 멘토방 R
-    * /students/findAllRooms
-    * /students/findOneRoom/:mentor_room_id
-* 해당 멘토방 멘티 신청 C (/students/applyMentee/:mentor_room_id)
-* 해당 멘토방 멘티 신청 D (/students/deleteApplyMentee/:user_id)
-* 소속된 멘토방 R (/students/myMentorRoom)
-* 시간표 CU (/time/timeTableGet & /time/timeTablePost)
+설명 | 요청 url
+--------|-------
+공지 조회(R) | /notices/index (전체)<br/>/notices/show/:notice_id (개별)
+멘토 신청(C) | /students/applyMentorGet<br/>/students/applyMentorPost
+멘토 신청(U) | /students/applyMentorEdit<br/>/students/applyMentorUpdate
+멘토 신청(D) | /students/applyMentorDelete
+멘토방(R) | /students/findAllRooms (전체)<br/>/students/findOneRoom/:mentor_room_id (개별)
+멘토방 멘티 신청(C) | /students/applyMentee/:mentor_room_id
+멘토방 멘티 신청 취소(D) | /students/deleteApplyMentee/:user_id
+소속된 멘토방(R) | /students/myMentorRoom
+시간표 등록/조회/수정(CRU) | /time/timeTableGet<br/>/time/timeTablePost
 
 ### Mentor User (authorization == '1')
-* 내 멘토방 멘티 D (/mentors/deleteMyMentee/:user_id)
-* 보고서 CU
-    * /mentors/midReportUpdate
-    * /mentors/finalReportUpdate
+설명 | 요청 url
+--------|-------
+멘토방 멘티 삭제(D) | /mentors/deleteMyMentee/:user_id
+보고서 등록/수정(CU) | /mentors/midReportUpdate (중간보고서)<br/>/mentors/finalReportUpdate (최종보고서)
     
 ### Admin User (authorization == '0')
-* 유저 R (/admin/findAllUsers)
-* 유저 권한 변경 U (/admin/userAuthChange)
-* 유저 삭제 D (/admin/userDelete/:user_id)
-* 멘토 신청자 R (/admin/mentorApplyUsers)
-* 멘토 신청자 세부 정보 R (/admin/mentorApplyFindOne/:mentor_apply_id)
-* 멘토 신청 승인 CU (/admin/mentorApplyConfirm)
-    > 유저 권한 변경과 멘토방 개설이므로 CU로 표기
-* 멘토 신청 내역 D (/admin/deleteMentorApply/:mentor_apply_id)
-* 멘토방 D (/admin/mentorRoomDelete/:mentor_room_id)
-* 학기 CRUD
-    * /admin/semesterGet
-    * /admin/semesterCreate
-    * /admin/semesterUpdate
-    * /admin/semesterDelete
-* 멘토 신청 활성화/비활성화 (/admin/mentorOption)
-* 멘티 신청 활성화/비활성화 (/admin/menteeOption)
-* 멘토방 인원 설정 (/admin/roomOption)
-* 보고서 R (/admin/reportAll)
-* 회원 엑셀 업로드 (/admin/import)
+설명 | 요청 url
+--------|-------
+사용자 등록(C) | /admin/import
+사용자 조회(R) | /admin/findAllUsers(전체)
+사용자 권한 변경(U) | /admin/userAuthChange
+사용자 삭제(D) | /admin/userDelete/:user_id
+멘토 신청자 조회(R) | /admin/mentorApplyUsers (전체)<br/>/admin/mentorApplyFindOne/:mentor_apply_id (개별)
+멘토 신청 승인(CU) | /admin/mentorApplyConfirm<br/>사용자 권한 변경 + 멘토방 개설
+사용자 멘토 신청 삭제(D) | /admin/deleteMentorApply/:mentor_apply_id  
+멘토방 삭제(D) | /admin/mentorRoomDelete/:mentor_room_id
+학기 등록/조회(CR) | /admin/semesterGet<br/>/admin/semesterCreate
+학기 상태 수정(U) | /admin/semesterUpdate
+학기 삭제(D) | /admin/semesterDelete
+멘토 신청 활성화/비활성화(U) | /admin/mentorOption
+멘티 신청 활성화/비활성화(U) | /admin/menteeOption
+멘토방 인원 설정(U) | /admin/roomOption
+보고서 조회(R) | /admin/reportAll
 
 ---
 
