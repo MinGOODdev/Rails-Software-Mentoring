@@ -18,7 +18,7 @@
 
 ## API arrangement
 ### Common
-설명 | 요청 url
+기능 | 요청 url
 --------|-------
 회원가입 | /users/sign_up
 로그인 | /users/sign_in
@@ -26,26 +26,26 @@
 회원 정보 수정 | /users/edit
 
 ### General User (authorization == '2')
-설명 | 요청 url
+기능 | 요청 url
 --------|-------
 공지 조회(R) | /notices/index (전체)<br/>/notices/show/:notice_id (개별)
 멘토 신청(C) | /students/applyMentorGet<br/>/students/applyMentorPost
-멘토 신청(U) | /students/applyMentorEdit<br/>/students/applyMentorUpdate
-멘토 신청(D) | /students/applyMentorDelete
-멘토방(R) | /students/findAllRooms (전체)<br/>/students/findOneRoom/:mentor_room_id (개별)
+멘토 신청 수정(U) | /students/applyMentorEdit<br/>/students/applyMentorUpdate
+멘토 신청 취소(D) | /students/applyMentorDelete
+멘토방 조회(R) | /students/findAllRooms (전체)<br/>/students/findOneRoom/:mentor_room_id (개별)
 멘토방 멘티 신청(C) | /students/applyMentee/:mentor_room_id
 멘토방 멘티 신청 취소(D) | /students/deleteApplyMentee/:user_id
-소속된 멘토방(R) | /students/myMentorRoom
+소속된 멘토방 조회(R) | /students/myMentorRoom
 시간표 등록/조회/수정(CRU) | /time/timeTableGet<br/>/time/timeTablePost
 
 ### Mentor User (authorization == '1')
-설명 | 요청 url
+기능 | 요청 url
 --------|-------
 멘토방 멘티 삭제(D) | /mentors/deleteMyMentee/:user_id
 보고서 등록/수정(CU) | /mentors/midReportUpdate (중간보고서)<br/>/mentors/finalReportUpdate (최종보고서)
     
 ### Admin User (authorization == '0')
-설명 | 요청 url
+기능 | 요청 url
 --------|-------
 사용자 등록(C) | /admin/import
 사용자 조회(R) | /admin/findAllUsers(전체)
@@ -60,88 +60,74 @@
 학기 삭제(D) | /admin/semesterDelete
 멘토 신청 활성화/비활성화(U) | /admin/mentorOption
 멘티 신청 활성화/비활성화(U) | /admin/menteeOption
-멘토방 인원 설정(U) | /admin/roomOption
-보고서 조회(R) | /admin/reportAll
+멘토방 최대 인원 설정(U) | /admin/roomOption
+보고서 전체 조회(R) | /admin/reportAll
 
 ---
 
 ## Function
 ### Common
-
-* 회원가입 (완료)
-* 로그인 (완료)
-* 로그아웃 (완료)
-* 회원 정보 수정 (완료)
+기능 | 완료
+--------|-------
+회원가입 | V
+로그인 | V
+로그아웃 | V
+회원 정보 수정 | V
 
 ---
 
 ### Mentee
-
-* 공지게시판 R (완료)
-    * file download (완료)
-* 자유게시판 CRUD
-    * uploaded file 수정
-    * pagination
-    * 정렬
-    * 검색
-    * 댓글  
-* 문의게시판 CRUD
-    * pagination
-    * 정렬
-    * 검색
-    * 댓글(답글)  
-* 시간표 CRU (완료)
-    * 각 멘토방 학생의 시간표 비교 (완료)
+기능 | 완료
+--------|-------
+공지 R<br/>- 첨부파일 다운로드 | V<br/>V
+자유 CRUD<br/>- 첨부파일 다운로드<br/>- Pagination<br/>- 검색<br/>- 댓글 | 
+문의 CRUD<br/>- Pagination<br/>- 검색<br/>- 댓글 |
+시간표 CRU & 비교 | V
     
 ---
 
-* 멘티 신청 (완료)
-* 멘티 신청 취소 (완료)
-* 멘토 신청 (완료)
-    * portfolio upload (완료)
-* 멘토 신청 수정 (완료)
-    * portfolio 수정 (완료)
-* 멘토 신청 취소 (완료)
-* 멘토방 목록 조회 (완료)
-* 해당 멘토방 세부 정보 조회 (완료)
-    * 포트폴리오 download (완료)
+기능 | 완료
+--------|-------
+멘티 신청 | V
+멘티 신청 취소 | V
+멘토 신청<br/>- 포트폴리오 업로드 | V<br/>V
+멘토 신청 수정<br/>- 포트폴리오 수정 | V<br/>V
+멘토 신청 취소 | V
+멘토방 전체 조회 | V
+멘토방 개별 조회<br/>- 포트폴리오 다운로드 | V<br/>V
 
 ---
 
 ### Mentor (authorization == '1')
-* 중간 보고서 제출(file upload) (완료)
-* 최종 보고서 제출(file upload) (완료)
-* 본인 멘토방 멘티 삭제 (완료)
+기능 | 완료
+--------|-------
+중간 보고서 업로드 | V
+최종 보고서 업로드 | V
+멘토방 멘티 삭제 | V
 
 ---
 
 ### Admin (authorization == '0')
-* 공지게시판 CRUD (완료)
-    * uploaded file 수정 (완료)
-    * pagination (완료)
-    * 정렬 (완료)
-    * 검색 (완료)
-* 전체 사용자 조회 (완료)
-    * pagination (완료)
-    * 정렬
-    * 검색   
-* 멘토 신청자 조회 (완료)
-    * pagination (완료)
-* 멘토 신청자 세부 정보 조회 (완료)
-* 멘토 신청자 신청 내역 삭제 (완료)
-* 멘토 권한 승인 (완료)
-* 멘토방 개설 (완료)
-* 멘토방 삭제 (완료)
-* 사용자 관리
-    * 회원 권한 변경 (완료)
-    * 사용자 삭제 (완료)
-    * 사용자 엑셀 import (완료)
-    * 사용자 엑셀 export (완료)
-* 학기 등록 (완료)
-* 학기 활성/비활성 (완료)
-* 보고서 목록 조회 (완료)
-    * file download (완료)
-* 메뉴 활성/비활성 및 멘토방 최대 인원 설정 (완료)
+기능 | 완료
+--------|-------
+공지 CRUD<br/>- 첨부파일 등록 및 수정<br/>- Pagination<br/>- 검색 | V<br/>V<br/>V<br/>V
+사용자 전체 조회<br/>- Pagination<br/>- 정렬<br/>- 검색 | V<br/>V<br/>　<br/>　
+멘토 신청자 전체 조회<br/>- Pagination | V<br/>V
+멘토 신청자 개별 조회 | V
+사용자 멘토 신청 삭제 | V
+멘토 권한 승인 | V
+멘토방 개설 | V
+멘토방 삭제 | V
+사용자 권한 변경 | V
+사용자 삭제 | V
+사용자 엑셀 Import | V
+사용자 엑셀 Export | V
+학기 CR | V
+학기 활성/비활성화 | V
+보고서 전체 조회<br/>- 보고서 다운로드 | V<br/>V
+멘토 신청 활성화/비활성화 | V 
+멘티 신청 활성화/비활성화 | V
+멘토방 최대 인원 설정 | V
 
 ---
 
