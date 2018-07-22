@@ -72,11 +72,35 @@ class StudentsController < ApplicationController
   
   # 해당 멘토방 멘티로 신청
   def applyMentee
-    roomMember = RoomMember.new
-    roomMember.user_id = current_user.id
-    roomMember.mentor_room_id = params[:mentor_room_id]
-    roomMember.save
-    redirect_to "/students/findOneRoom/#{roomMember.mentor_room_id}"
+    roomMembers = RoomMember.where(:mentor_room_id => params[:mentor_room_id])
+    room_size = roomMembers.size
+    room_member_max_num = AdminOption.first.room_member_max_num
+
+    # 멘토 권한은 멘티 신청을 할 수 없어야 한다.
+    # 관리자의 경우 -> 관리자 계정을 따로 갖는다.
+    # 소속된 멘토방이 있는지, 아니면 본인이 멘토인지 확인
+    myRoom = RoomMember.find_by(:user_id => current_user.id)
+    mentorRoom = MentorRoom.find_by(:user_id => current_user.id)
+
+    if myRoom == nil && mentorRoom == nil
+      if room_size < room_member_max_num
+        roomMember = RoomMember.new
+        roomMember.user_id = current_user.id
+        roomMember.mentor_room_id = params[:mentor_room_id]
+        roomMember.save
+        ## 멘티 신청 성공
+        ## TODO Flash
+        redirect_to "/students/findOneRoom/#{roomMember.mentor_room_id}"
+      else
+        ## 멘티 신청 실패 (해당 멘토방 인원수 초과)
+        ## TODO Flash
+        redirect_to '/students/findAllRooms'
+      end
+    else
+      ## TODO Flash
+      redirect_to 'students/findAllRooms'
+    end
+
   end
   
   # 해당 멘토방 멘티 신청 취소

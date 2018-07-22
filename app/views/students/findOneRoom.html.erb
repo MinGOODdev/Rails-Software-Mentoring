@@ -90,8 +90,8 @@
 
   <hr/>
   <% if current_user.authorization == '2' && AdminOption.first.mentee_apply_active == 1 %>
-    <% if @roomAll.where(:user_id => current_user.id).empty? %>
-      <!-- 신청한 멘토방이 1개라도 있으면 중복 신청 불가능 -->
+    <!-- 멘토 신청 선착순 처리 && 신청한 멘토방이 존재하면 안됨 -->
+    <% if @roomAll.where(:user_id => current_user.id).empty? && @memberCount < AdminOption.first.room_member_max_num %>
       <form action="/students/applyMentee/<%= @selectedRoom.id %>" method="post">
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
         <button class="btn btn-warning" type="submit">멘티 신청</button>
