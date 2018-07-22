@@ -67,6 +67,7 @@ class StudentsController < ApplicationController
     @roomAll = RoomMember.all
     @selectedRoom = MentorRoom.find(params[:mentor_room_id])
     @roomMembers = RoomMember.where(:mentor_room_id => params[:mentor_room_id])
+    @memberCount = @roomMembers.size
   end
   
   # 해당 멘토방 멘티로 신청
@@ -187,7 +188,6 @@ class StudentsController < ApplicationController
   ## 월요일 계산 로직
   def multiple_monday(day)
     if day != nil
-      puts day.am_nine_to_ten
       @mon_am_nine_to_ten *= day.am_nine_to_ten
       @mon_am_ten_to_eleven *= day.am_ten_to_eleven
       @mon_am_eleven_to_twelve *= day.am_eleven_to_twelve

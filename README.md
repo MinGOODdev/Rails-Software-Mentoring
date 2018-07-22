@@ -1,17 +1,16 @@
 # Software Mentoring System
 ## TODO
-설명 | FE | BE
------|----|-----
-보고서 다운로드 시 파일 이름에 학기도 포함시키기 | - | V
-멘토 권한은 멘티 신청을 할 수 없게 하기 | V | Not yet
-관리자 권한의 사용자(학생회장단)이 멘토 신청 후 멘토 승인시 권한 관리자로 유지시키기 | - | V
-멘티 신청 선착순 처리 | Not yet | V
-체크박스 전체선택 기능 추가하기 | Not yet | -
-시간 설정해서 그 시간에 멘토 신청, 멘티 신청 On/Off 하기 | Not yet | Not yet 
-Mentoring End 하면 관리자 아이디 빼고 권한 다 2로 만들기 | - | Not yet
-if문 중첩 3개 이상 case-when으로 바꾸기 | - | Not yet
-삭제를 할 경우에는 한번 더 확인하기 | Not yet | -
-파일 업로드할 때 선택된 파일 없으면 버튼 안 보이게 하기 (AJAX...) | Not yet | -
+설명 | FE
+-----|----
+보고서 다운로드 시 파일 이름에 학기도 포함시키기 | V
+멘토 권한은 멘티 신청을 할 수 없게 하기 | V 
+멘티 신청 선착순 처리 | V
+체크박스 전체선택 기능 추가하기 | Not yet
+시간 설정해서 그 시간에 멘토 신청, 멘티 신청 On/Off 하기 | Not yet 
+Mentoring End 하면 관리자 아이디 빼고 권한 다 2로 만들기 | V
+if문 중첩 3개 이상 case-when으로 바꾸기 | Fix
+삭제를 할 경우에는 한번 더 확인하기 | Not yet
+파일 업로드할 때 선택된 파일 없으면 버튼 안 보이게 하기 (AJAX?) | Not yet
 
 ## Flash Message 반영된 부분
 * 보고서 업로드할 때 선택된 파일이 없는 경우
@@ -87,7 +86,7 @@ if문 중첩 3개 이상 case-when으로 바꾸기 | - | Not yet
 ### Mentee
 기능 | 완료
 --------|-------
-공지 R<br/>- 첨부파일 다운로드 | V<br/>V
+공지 R<br/>- 첨부파일 다운로드<br/>- Pagination<br/>- 검색 | V<br/>V<br/>V<br/>V
 자유 CRUD<br/>- 첨부파일 다운로드<br/>- Pagination<br/>- 검색<br/>- 댓글 | 
 문의 CRUD<br/>- Pagination<br/>- 검색<br/>- 댓글 |
 시간표 CRU & 비교 | V

@@ -96,7 +96,7 @@
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
         <button class="btn btn-warning" type="submit">멘티 신청</button>
       </form>
-    <% else %>
+    <% elsif @roomMembers.find_by(:user_id => current_user.id) != nil %>
       <!--
       멘토방에 신청한 내역이 있다면 1개 밖에 없고,
       신청 버튼이 없다면 이 멘토방에 신청한 것이기 때문에
