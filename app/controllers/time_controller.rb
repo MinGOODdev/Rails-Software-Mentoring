@@ -62,20 +62,15 @@ class TimeController < ApplicationController
 
   private
   def set_data(timetable)
-    if timetable.class == Monday
-      i = 1
-    elsif timetable.class == Tuesday
-      i = 2
-    elsif timetable.class == Wednesday
-      i = 3
-    elsif timetable.class == Thursday
-      i = 4
-    elsif timetable.class == Friday
-      i = 5
-    else
-      i = 0
-      redirect_to '/time/timeTableGet'
-    end
+    i = case timetable
+        when Monday then 1
+        when Tuesday then 2
+        when Wednesday then 3
+        when Thursday then 4
+        when Friday then 5
+        else return
+        end
+
     timetable.user_id = current_user.id
     timetable.am_nine_to_ten = params["one#{i}"]
     timetable.am_ten_to_eleven = params["two#{i}"]

@@ -11,6 +11,15 @@ class AdminController < ApplicationController
     Thursday.destroy_all
     Friday.destroy_all
 
+    ## 관리자 권한을 제외하고 모두 권한 '2'로 Reinitialization
+    users = User.all
+    users.each do |u|
+      if u.authorization != '0'
+        u.authorization = '2'
+        u.save
+      end
+    end
+
     redirect_to '/home/index'
   end
 
@@ -90,7 +99,11 @@ class AdminController < ApplicationController
     # 멘토 권한 승인
     users = User.find(params[:users])
     users.each do |u|
-      u.authorization = 1
+      ## 관리자는 그대로 권한을 유지하기 위함
+      ## TODO 학생회장이 관리자, 학번 계정 2개를 가진다면 이 부분은 사실상 필요 없음.
+      if u.authorization == '2'
+        u.authorization = '1'
+      end
       u.save
     end
     
@@ -204,7 +217,7 @@ class AdminController < ApplicationController
     redirect_to '/admin/findAllUsers'
   end
 
-  ## TODO 비밀번호에 폰번호 + 문자열 들어가게 할 수 있겠지 ?
+  ## TODO Modify: 비밀번호에 폰번호 + 문자열 들어가게 할 수 있겠지 ?
 
   private
   def initialize_mentor_time_table(day, mentorApply)

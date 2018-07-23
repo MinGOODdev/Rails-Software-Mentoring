@@ -14,12 +14,19 @@ class NoticesController < ApplicationController
     # end
 
     # 검색
-    if params[:sb] == nil && params[:st] == nil
-      @notices = Notice.order("created_at DESC").page params[:page]
-    elsif params[:sb] == '1'
-      @notices = Notice.where("title like ?", "%#{params[:st]}%").page params[:page]
-    elsif params[:sb] == '2'
-      @notices = Notice.where("content like ?", "%#{params[:st]}%").page params[:page]
+    # if params[:sb] == nil && params[:st] == nil
+    #   @notices = Notice.order("created_at DESC").page params[:page]
+    # elsif params[:sb] == '1'
+    #   @notices = Notice.where("title like ?", "%#{params[:st]}%").page params[:page]
+    # elsif params[:sb] == '2'
+    #   @notices = Notice.where("content like ?", "%#{params[:st]}%").page params[:page]
+    # end
+
+    # 검색
+    case params[:sb]
+      when '1' then @notices = Notice.where('title like ?', "%#{params[:st]}%").page params[:page]
+      when '2' then @notices = Notice.where('content like ?', "%#{params[:st]}%").page params[:page]
+      else @notices = Notice.order('created_at DESC').page params[:page]
     end
   end
 
