@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def flash_msg(type)
       case type
-        when 'notice' then 'success'
+        when 'success' then 'success'
         when 'warning' then 'warning'
         when 'danger' then 'danger'
         else 'info'

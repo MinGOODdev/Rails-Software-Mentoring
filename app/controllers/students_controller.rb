@@ -89,15 +89,16 @@ class StudentsController < ApplicationController
         roomMember.mentor_room_id = params[:mentor_room_id]
         roomMember.save
         ## 멘티 신청 성공
-        ## TODO Flash
+        flash[:success] = '멘티 신청이 완료되었습니다.'
         redirect_to "/students/findOneRoom/#{roomMember.mentor_room_id}"
       else
         ## 멘티 신청 실패 (해당 멘토방 인원수 초과)
-        ## TODO Flash
+        flash[:warning] = '멘티 신청이 처리되지 않았습니다.'
         redirect_to '/students/findAllRooms'
       end
     else
-      ## TODO Flash
+      ## 멘티 신청 실패 (멘토방에 소속되어 있거나, 멘토인 경우)
+      flash[:info] = '멘티 신청 권한이 없습니다.'
       redirect_to 'students/findAllRooms'
     end
 
@@ -107,6 +108,7 @@ class StudentsController < ApplicationController
   def deleteApplyMentee
     roomMember = RoomMember.find_by(:user_id => params[:user_id])
     roomMember.destroy
+    flash[:success] = '멘티 신청이 취소되었습니다.'
     redirect_to "/students/findOneRoom/#{roomMember.mentor_room_id}"
   end
   
