@@ -73,7 +73,7 @@
               </td>
               <td>
                 <!-- 해당 멘토방의 멘토인 경우에만 멘티를 삭제할 수 있습니다. -->
-                <% if current_user.id == @selectedRoom.user_id && r.user.authorization == '1' %>
+                <% if current_user.id == @selectedRoom.user_id %>
                   <form action="/mentors/deleteMyMentee/<%= r.user.id %>" method="post">
                     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
                     <button class="btn btn-light btn-sm" type="submit">삭제</button>

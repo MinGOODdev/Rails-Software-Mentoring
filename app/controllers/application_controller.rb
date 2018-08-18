@@ -6,14 +6,14 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   
   protected
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:student_name])
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:bank_name])
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:bank_account])
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:grade])
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:phone_number])
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:mail])
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:department_id])
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:authorization])
-    end
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:student_name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:bank_name])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:bank_account])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:grade])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:phone_number])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:mail])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:department_id])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:authorization])
+  end
 end

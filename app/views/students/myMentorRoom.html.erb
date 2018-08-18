@@ -143,10 +143,12 @@
                 <% end %>
               </td>
               <td>
-                <!-- 해당 멘토방의 멘토인 경우에만 멘티를 삭제할 수 있습니다. -->
-                <% if current_user.id == @roomMember.mentor_room.user_id && r.user.authorization == '1' %>
-                  <form action="/mentors/deleteMyMentee/<%= r.user.id %>" method="post">
+                <!-- TODO Fix: 논리가 잘못되었음 고쳐야함
+                해당 멘토방의 멘토인 경우에만 멘티를 삭제할 수 있습니다. -->
+                <% if current_user.id == @roomMember.mentor_room.user_id && r.user.authorization == '2' %>
+                  <form action="/mentors/deleteMyMentee/<%= r.user.id %>" method="post" data-confirm="ㅁㅁㅁ">
                     <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                    <!-- <a href="/articles/1" data-confirm="Are you sure?" data-method="delete"> -->
                     <button class="btn btn-light btn-sm" type="submit">삭제</button>
                   </form>
                 <% end %>
